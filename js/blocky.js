@@ -10,7 +10,7 @@ renderDashboard = function(json) {
   main = get('bread');
   h2 = mk('h2', {}, "Currently " + json.banned + " IP" + (json.banned !== 1 ? 's' : '') + " banned, " + json.whitelisted + " IP" + (json.whitelisted !== 1 ? 's' : '') + " whitelisted.");
   app(main, h2);
-  if (isArray(json.banlist && json.banlist.length > 0)) {
+  if (isArray(json.banlist) && json.banlist.length > 0) {
     ul = mk('ul');
     ref = json.banlist;
     for (l = 0, len = ref.length; l < len; l++) {
