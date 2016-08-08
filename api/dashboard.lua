@@ -17,6 +17,13 @@ function handle(r)
         end
     end
     
+    if get.deletewhite then
+        local doc = elastic.get('whitelist', get.deletewhite)
+        if doc then
+            elastic.delete('whitelist', get.deletewhite)
+        end
+    end
+    
     if post.ban then
         local reason = post.ban.reason
         local ip = post.ban.ip
