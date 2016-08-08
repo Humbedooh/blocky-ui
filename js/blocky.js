@@ -431,7 +431,7 @@ renderWhitelist = function(json) {
     app(main, div);
   }
   div.innerHTML = "";
-  if (isArray(json.whitelist)) {
+  if (isArray(json.whitelist) && json.whitelist.length > 0) {
     ul = mk('ul');
     ref = json.whitlist;
     for (l = 0, len = ref.length; l < len; l++) {
@@ -446,6 +446,8 @@ renderWhitelist = function(json) {
       app(ul, li);
     }
     app(main, ul);
+  } else {
+    app(main, mk('h4', {}, "There are no whitelisted IPs at the moment."));
   }
   form = mk('form');
   fd = mk('div', {
