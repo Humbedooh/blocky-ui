@@ -118,7 +118,7 @@ addRule = (rule) ->
     btn = mk('input', {type: 'button', class: 'btn btn-success', value: "Save rule", onclick: 'submitRule("'+(rule.id||"")+'");'})
     app(fd, btn)
     if rule.id
-        btn = mk('input', {type: 'button', class: 'btn btn-danger', value: "Delete rule", onclick: 'deleteRule("'+(rule.id||"")+'");'})
+        btn = mk('input', {type: 'button', style: "margin-left: 50px;", class: 'btn btn-danger', value: "Delete rule", onclick: 'deleteRule("'+(rule.id||"")+'");'})
         app(fd, btn)
     app(form, fd)
         

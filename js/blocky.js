@@ -217,6 +217,7 @@ addRule = function(rule) {
   if (rule.id) {
     btn = mk('input', {
       type: 'button',
+      style: "margin-left: 50px;",
       "class": 'btn btn-danger',
       value: "Delete rule",
       onclick: 'deleteRule("' + (rule.id || "") + '");'
