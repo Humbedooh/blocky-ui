@@ -11,7 +11,7 @@ function handle(r)
     local bans = elastic.count({}, 'ban')
     local whitelisted = elastic.count({}, 'whitelist')
     
-    banSize = 20
+    local banSize = 20
     if get.hits then
         banSize = tonumber(get.hits) or 20
     end
@@ -20,9 +20,7 @@ function handle(r)
             sort = {
                 {epoch = "desc"}
             },
-            size = banSize,
-            query = {
-            }
+            size = banSize
         }, 'ban')
     if banList and banList.hits.hits then
         banList = banList.hits.hits
