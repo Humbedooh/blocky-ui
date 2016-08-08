@@ -161,7 +161,7 @@ addRule = function(rule) {
   for (k in ruleSpans) {
     v = ruleSpans[k];
     options.push(mk('option', {
-      selected: (rule.span === k ? 'selected' : null),
+      selected: (rule.span === parseInt(k) ? 'selected' : null),
       value: k
     }, v));
   }

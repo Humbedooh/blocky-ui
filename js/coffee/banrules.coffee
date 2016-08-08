@@ -93,7 +93,7 @@ addRule = (rule) ->
     options = []
     options.push(mk('option', {value: "0", disabled: 'true', selected:'true'},"Select a timespan for the limit:"))
     for k,v of ruleSpans
-        options.push(mk('option', {selected: (if rule.span == k then 'selected' else null), value: k}, v))
+        options.push(mk('option', {selected: (if rule.span == parseInt(k) then 'selected' else null), value: k}, v))
     fd = mk('div', {style: "width: 100%; relative; overflow: auto; border-bottom: 1px solid #CCC; padding-bottom: 6px; margin-bottom: 6px;"})
     fdd = mk('div', { style: "float: left; width: 150px; font-weight: bold;"}, "Timespan to apply limit to:")
     fid = mk('div', { style: "float: left; width: 350px;"}, mk('select', { style: 'width: 200px;', 'id':'span'}, options))
