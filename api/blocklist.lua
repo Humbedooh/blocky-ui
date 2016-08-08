@@ -49,6 +49,10 @@ function handle(r)
     for k, v in pairs(bl) do
         table.insert(list, { ip = v.ip, reason = v.reason, target = "*" })
     end
-    r:puts(JSON.encode(list))
+    if #list > 0 then
+        r:puts(JSON.encode(list))
+    else
+        r:puts("[]")
+    end
     return apache2.OK
 end
