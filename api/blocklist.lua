@@ -46,7 +46,7 @@ function handle(r)
             table.insert(list, { ip = v.request_id, unban = true, target = "*" })
         end
     end
-    for k, v in pairs(blacklist) do
+    for k, v in pairs(bl) do
         table.insert(list, { ip = v.ip, reason = b.reason, target = "*" })
     end
     r:puts(JSON.encode(list))
