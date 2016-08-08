@@ -12,7 +12,7 @@ function handle(r)
         local doc = elastic.get('ban', get.delete)
         if doc then
             elastic.delete('ban', get.delete)
-            doc.removeTime = time.time()
+            doc.removeTime = os.time()
             elastic.index(r, get.delete, 'tmpwhite', doc)
         end
     end
