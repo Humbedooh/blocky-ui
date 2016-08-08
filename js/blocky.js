@@ -192,7 +192,7 @@ addRule = function(rule) {
     style: 'width: 320px; height: 100px;',
     placeholder: "One query per line, in the format: key=\"string\" or key=num",
     'id': 'rules'
-  }, (talk.query || []).join("\n")));
+  }, (rule.query || []).join("\n")));
   fih = mk('div', {
     style: "float: left; width: 250px; font-style: italic;"
   }, "The queries to apply to this search.");

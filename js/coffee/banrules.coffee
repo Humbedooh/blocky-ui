@@ -106,7 +106,7 @@ addRule = (rule) ->
     # Queries
     fd = mk('div', {style: "width: 100%; relative; overflow: auto; border-bottom: 1px solid #CCC; padding-bottom: 6px; margin-bottom: 6px;"})
     fdd = mk('div', { style: "float: left; width: 150px; font-weight: bold;"}, "Query data")
-    fid = mk('div', { style: "float: left; width: 350px;"}, mk('textarea', { style: 'width: 320px; height: 100px;', placeholder: "One query per line, in the format: key=\"string\" or key=num", 'id':'rules'}, (talk.query||[]).join("\n")))
+    fid = mk('div', { style: "float: left; width: 350px;"}, mk('textarea', { style: 'width: 320px; height: 100px;', placeholder: "One query per line, in the format: key=\"string\" or key=num", 'id':'rules'}, (rule.query||[]).join("\n")))
     fih = mk('div', { style: "float: left; width: 250px; font-style: italic;"}, "The queries to apply to this search.")
     app(fd, fdd)
     app(fd, fid)
