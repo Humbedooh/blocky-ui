@@ -415,7 +415,7 @@ submitBan = function() {
 
 deleteWhite = function(ip) {
   alert("IP removed from whitelist");
-  return fetch("./api/dashboard.lua?deletwhite=" + ip, null, renderWhitelist);
+  return fetch("./api/dashboard.lua?deletewhite=" + ip, null, renderWhitelist);
 };
 
 whiteList = function() {

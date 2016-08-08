@@ -72,7 +72,7 @@ submitBan = () ->
     
 deleteWhite = (ip) ->
     alert("IP removed from whitelist")
-    fetch("./api/dashboard.lua?deletwhite=" + ip, null, renderWhitelist)
+    fetch("./api/dashboard.lua?deletewhite=" + ip, null, renderWhitelist)
     
 whiteList = () ->
     fetch("./api/dashboard.lua", null, renderWhitelist)
