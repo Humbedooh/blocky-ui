@@ -8,6 +8,17 @@ renderRules = (json) ->
     app(main, mk('a', { style: "font-size: 2rem;", href: "javascript:void(addRule());"}, "Add a new rule"))
     app(main, mk('br'))
     if isArray(json.rules) and json.rules.length > 0
+        json.rules.sort((a,b) ->
+            as =  a.name
+            bs =  b.name
+            if as < bs
+                return 1
+            if as == bs
+                return 0
+            if as > bs
+                return -1
+            return 0
+        )
         banRules = json.rules
         app(main, mk('h3', {}, "Current rules:"))
         ul = mk('ul')
