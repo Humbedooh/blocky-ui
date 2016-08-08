@@ -318,7 +318,7 @@ renderDashboard = function(json, edit) {
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
       ipname = ip.ip;
       if (ip.dns && ip.dns !== ip.ip) {
-        ipName += " (" + ip.dns + ")";
+        ipname += " (" + ip.dns + ")";
       }
       li = mk('li', {
         style: "font-size: 0.8rem;"
