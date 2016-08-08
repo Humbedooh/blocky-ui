@@ -12,7 +12,6 @@ function handle(r)
         local doc = elastic.get('ban', get.delete)
         if doc then
             elastic.delete('ban', get.delete)
-            r.usleep(500000)
         end
     end
     
@@ -35,7 +34,9 @@ function handle(r)
         for k, v in pairs(banList.hits.hits) do
             local b = v._source
             b.ip = v._id
-            table.insert(bl, b)
+            if b.ip ~= get.delete then
+                table.insert(bl, b)
+            end
         end
     end
     r:puts(JSON.encode{
