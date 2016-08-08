@@ -323,7 +323,7 @@ renderDashboard = function(json, edit) {
       li = mk('li', {
         style: "font-size: 0.8rem;"
       }, [
-        ipname + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
+        mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
           href: "javascript:void(deleteBan('" + ip.ip + "'));"
         }, "Remove ban")
       ]);
