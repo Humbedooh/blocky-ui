@@ -47,7 +47,7 @@ function handle(r)
         end
     end
     for k, v in pairs(bl) do
-        table.insert(list, { ip = v.ip, reason = b.reason, target = "*" })
+        table.insert(list, { ip = v.ip, reason = v.reason, target = "*" })
     end
     r:puts(JSON.encode(list))
     return apache2.OK
