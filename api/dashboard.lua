@@ -44,7 +44,6 @@ function handle(r)
             elastic.index(r, post.ban.ip, 'ban', doc)
         end
         r.usleep(1000000)
-        end
     end
     
     if post.whitelist then
