@@ -22,16 +22,19 @@ function handle(r)
             },
             size = banSize
         }, 'ban')
+    local bl = {}
     if banList and banList.hits.hits then
-        banList = banList.hits.hits
-    else
-        banList = {}
+        for k, v in pairs(banList.hits.hits) do
+            local b = v._source
+            b.ip = v._id
+            table.insert(bl, b)
+        end
     end
     r:puts(JSON.encode{
         okay = true,
         banned = bans,
         whitelisted = whitelisted,
-        banlist = banList
+        banlist = bl
     })
     
     return apache2.OK
