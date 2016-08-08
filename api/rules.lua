@@ -34,7 +34,7 @@ function handle(r)
                 query = tbl
             }
             if post.addrule.id then
-                local xdoc = get('rule', post.addrule.id)
+                local xdoc = elastic.get('rule', post.addrule.id)
                 if xdoc then
                     elastic.update('rule', post.addrule.id, doc)
                 end
