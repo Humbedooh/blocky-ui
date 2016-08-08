@@ -33,8 +33,16 @@ function handle(r)
                 span = span,
                 query = tbl
             }
-            elastic.index(r, id, 'rule', doc)
+            if post.addrule.id then
+                local xdoc = get('rule', post.addrule.id)
+                if xdoc then
+                    elastic.update('rule', post.addrule.id, doc)
+                end
+            else
+                elastic.index(r, id, 'rule', doc)
+            end
         end
+    end
     
     ruleList = elastic.raw ({
             sort = {
