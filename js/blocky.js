@@ -509,7 +509,7 @@ renderWhitelist = function(json) {
 submitWhite = function() {
   var ip, reason;
   ip = get('ip').value;
-  if (ip.length <= 8) {
+  if (ip.length <= 6) {
     alert("Please enter a valid IP address!");
     return;
   }
