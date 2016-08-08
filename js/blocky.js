@@ -316,7 +316,9 @@ renderDashboard = function(json, edit) {
     for (l = 0, len = ref.length; l < len; l++) {
       ip = ref[l];
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
-      li = mk('li', {}, [
+      li = mk('li', {
+        style: "font-size: 0.8rem;"
+      }, [
         ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
           href: "javascript:void(deleteBan('" + ip.ip + "'));"
         }, "Remove ban")
