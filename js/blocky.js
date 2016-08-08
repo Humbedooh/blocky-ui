@@ -26,10 +26,10 @@ renderRules = function(json, edit) {
   if (edit) {
     alert("Rules updated!");
   }
-  app(main, mk('a', {
-    style: "font-size: 2rem;",
-    href: "javascript:void(addRule());"
-  }, "Add a new rule"));
+  app(main, mk('btn', {
+    onclick: "addRule();",
+    value: "Add a new rule"
+  }));
   app(main, mk('br'));
   if (isArray(json.rules) && json.rules.length > 0) {
     json.rules.sort(function(a, b) {
