@@ -44,6 +44,7 @@ renderRules = (json, edit) ->
         app(main, mk('h3', {}, "Doesn't seem like there are any rules yet..."))
     
 addRule = (rule) ->
+    main = get('bread')
     div = get('addrule')
     if not div
         div = mk('div', {id: "addrule"})

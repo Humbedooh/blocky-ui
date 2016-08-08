@@ -62,7 +62,8 @@ renderRules = function(json, edit) {
 };
 
 addRule = function(rule) {
-  var btn, div, fd, fdd, fid, fih, form, k, options, v;
+  var btn, div, fd, fdd, fid, fih, form, k, main, options, v;
+  main = get('bread');
   div = get('addrule');
   if (!div) {
     div = mk('div', {
