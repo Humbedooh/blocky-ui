@@ -12,6 +12,8 @@ function handle(r)
         local doc = elastic.get('ban', get.delete)
         if doc then
             elastic.delete('ban', get.delete)
+            doc.removeTime = time.time()
+            elastic.insert(r, get.delete, 'tmpwhite', doc)
         end
     end
     
