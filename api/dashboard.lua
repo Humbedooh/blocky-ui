@@ -63,7 +63,7 @@ function handle(r)
     end
     
     local bans = elastic.count({}, 'ban')
-    local whitelisted = elastic.count({}, 'whitelist')
+    local whitelist = elastic.find('*', 9999, 'whitelist')
     
     local banSize = 20
     if get.hits then
@@ -89,7 +89,8 @@ function handle(r)
     r:puts(JSON.encode{
         okay = true,
         banned = bans,
-        whitelisted = whitelisted,
+        whitelisted = #whitelist,
+        whitelist = whitelist,
         banlist = bl
     })
     
