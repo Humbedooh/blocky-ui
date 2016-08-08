@@ -435,7 +435,7 @@ renderWhitelist = function(json) {
   div.innerHTML = "";
   if (isArray(json.whitelist) && json.whitelist.length > 0) {
     ul = mk('ul');
-    ref = json.whitlist;
+    ref = json.whitelist;
     for (l = 0, len = ref.length; l < len; l++) {
       ip = ref[l];
       li = mk('li', {

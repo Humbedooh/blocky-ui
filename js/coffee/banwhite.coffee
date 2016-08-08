@@ -87,7 +87,7 @@ renderWhitelist = (json) ->
     
     if isArray(json.whitelist) and json.whitelist.length > 0
         ul = mk('ul')
-        for ip in json.whitlist
+        for ip in json.whitelist
             li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ip.ip), ": " + ip.reason + " - ", mk('a', { href: "javascript:void(deleteWhite('" + ip.ip+"'));"}, "Remove whitelisting")])
             app(ul, li)
         app(main, ul)
