@@ -83,7 +83,7 @@ addRule = (rule) ->
     fd = mk('div', {style: "width: 100%; relative; overflow: auto; border-bottom: 1px solid #CCC; padding-bottom: 6px; margin-bottom: 6px;"})
     fdd = mk('div', { style: "float: left; width: 150px; font-weight: bold;"}, "Rule limit: ")
     fid = mk('div', { style: "float: left; width: 350px;"}, mk('input', { style: 'width: 200px;', type:'text', 'id':'limit', value: rule.limit}))
-    fih = mk('div', { style: "float: left; width: 250px; font-style: italic;"}, "The limit (doc count of traffic in bytes) that triggers a ban.")
+    fih = mk('div', { style: "float: left; width: 250px; font-style: italic;"}, "The limit (doc count or traffic in bytes) that triggers a ban.")
     app(fd, fdd)
     app(fd, fid)
     app(fd, fih)

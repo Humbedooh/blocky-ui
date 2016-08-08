@@ -143,7 +143,7 @@ addRule = function(rule) {
   }));
   fih = mk('div', {
     style: "float: left; width: 250px; font-style: italic;"
-  }, "The limit (doc count of traffic in bytes) that triggers a ban.");
+  }, "The limit (doc count or traffic in bytes) that triggers a ban.");
   app(fd, fdd);
   app(fd, fid);
   app(fd, fih);
