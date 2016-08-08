@@ -27,7 +27,7 @@ renderRules = function(json, edit) {
   if (edit) {
     alert("Rules updated!");
   }
-  app(main, mk('btn', {
+  app(main, mk('input', {
     type: "button",
     onclick: "addRule();",
     value: "Add a new rule"
