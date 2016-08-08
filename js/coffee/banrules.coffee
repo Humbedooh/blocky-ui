@@ -131,15 +131,16 @@ submitRule = (id) ->
         alert("Please select a rule type!")
         return
     limit = parseInt(get('limit').value)
-    if limit <= 0
+    if limit <= 0 or get('limit').value.length == 0
         alert("Please enter a sane ban limit!")
         return
     span = get('span').value
     if not span or parseInt(span) <= 0
         alert("Please select a timespan!")
         return
+    span = parseInt(span)
     query = []
-    lines = get('query').split(/\r?\n/)
+    lines = get('rules').split(/\r?\n/)
     for line in lines
         if line.match(/^\S+=".+"$/) or line.match(/\S+=[0-9.]+$/)
             query.push(line)
