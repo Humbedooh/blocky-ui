@@ -24,7 +24,11 @@ function handle(r)
             query = {
             }
         }, 'ban')
-    
+    if banList and banList.hits.hits then
+        banList = banList.hits.hits
+    else
+        banList = {}
+    end
     r:puts(JSON.encode{
         okay = true,
         banned = bans,
