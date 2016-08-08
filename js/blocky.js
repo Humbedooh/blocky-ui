@@ -19,7 +19,7 @@ ruleSpans = {
 };
 
 renderRules = function(json, edit) {
-  var item, l, len, li, main, ref, ul;
+  var i, item, l, len, li, main, ref, ul;
   main = get('bread');
   main.innerHTML = "";
   if (edit) {
@@ -50,9 +50,13 @@ renderRules = function(json, edit) {
     app(main, mk('h3', {}, "Current rules:"));
     ul = mk('ul');
     ref = json.rules;
-    for (l = 0, len = ref.length; l < len; l++) {
-      item = ref[l];
-      li = mk('li', {}, item.name);
+    for (i = l = 0, len = ref.length; l < len; i = ++l) {
+      item = ref[i];
+      li = mk('li', {}, [
+        item.name + " - ", mk('a', {
+          href: "javascript:void(addRule(" + i + "));"
+        }, "Edit rule")
+      ]);
       app(ul, li);
     }
     return app(main, ul);
@@ -73,7 +77,7 @@ addRule = function(rule) {
   }
   div.innerHTML = "";
   form = mk('form');
-  rule = rule || {};
+  rule = banRules[rule] || {};
   fd = mk('div', {
     style: "width: 100%; relative; overflow: auto; border-bottom: 1px solid #CCC; padding-bottom: 6px; margin-bottom: 6px;"
   });

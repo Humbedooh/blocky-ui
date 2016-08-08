@@ -36,8 +36,8 @@ renderRules = (json, edit) ->
         banRules = json.rules
         app(main, mk('h3', {}, "Current rules:"))
         ul = mk('ul')
-        for item in json.rules
-            li = mk('li', {}, item.name)
+        for item, i in json.rules
+            li = mk('li', {}, [item.name + " - ", mk('a', {href:"javascript:void(addRule("+i+"));"}, "Edit rule")])
             app(ul, li)
         app(main, ul)
     else
@@ -53,7 +53,7 @@ addRule = (rule) ->
     
     
     form = mk('form')
-    rule = rule || {}
+    rule = banRules[rule] || {}
     
     # Rule name
     fd = mk('div', {style: "width: 100%; relative; overflow: auto; border-bottom: 1px solid #CCC; padding-bottom: 6px; margin-bottom: 6px;"})
