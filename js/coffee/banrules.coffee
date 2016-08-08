@@ -117,6 +117,9 @@ addRule = (rule) ->
     fd = mk('div', {style: "width: 100%; relative; overflow: auto;"})
     btn = mk('input', {type: 'button', class: 'btn btn-success', value: "Save rule", onclick: 'submitRule("'+(rule.id||"")+'");'})
     app(fd, btn)
+    if rule.id
+        btn = mk('input', {type: 'button', class: 'btn btn-danger', value: "Delete rule", onclick: 'deleteRule("'+(rule.id||"")+'");'})
+        app(fd, btn)
     app(form, fd)
         
     app(div, form)
@@ -172,3 +175,7 @@ submitRule = (id) ->
                 query: query
             }
         }, true, renderRules)
+        
+deleteRule = (id) ->
+    fetch("./api/rules.lua?delete=" + id, true, renderRules)
+    
