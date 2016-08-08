@@ -47,7 +47,9 @@ function handle(r)
         end
     end
     for k, v in pairs(bl) do
-        table.insert(list, { ip = v.ip, reason = v.reason, target = "*" })
+        if v.epoch > (os.time() - (86400*7)) then
+            table.insert(list, { ip = v.ip, reason = v.reason, target = "*" })
+        end
     end
     if #list > 0 then
         r:puts(JSON.encode(list))
