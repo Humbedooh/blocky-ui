@@ -13,6 +13,7 @@ ruleTypes = {
 };
 
 ruleSpans = {
+  12: "12 hours",
   24: "One day (24 hours)",
   168: "One week (168 hours)",
   720: "One month (720 hours)"
