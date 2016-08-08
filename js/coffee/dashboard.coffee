@@ -6,7 +6,7 @@ renderDashboard = (json) ->
     h2 = mk('h2', {}, "Currently " + json.banned + " IP" + (if json.banned != 1 then 's' else '') + " banned, " + json.whitelisted + " IP" + (if json.whitelisted != 1 then 's' else '') + " whitelisted.")
     app(main, h2)
     
-    if isArary json.banlist
+    if isArray json.banlist and json.banlist.length > 0
         ul = mk('ul')
         for ip in json.banlist
             li = mk('li', {}, ip.ip + ": " + ip.reason)
