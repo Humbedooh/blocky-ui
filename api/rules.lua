@@ -12,6 +12,7 @@ function handle(r)
         local doc = elastic.get('rule', get.delete)
         if doc then
             elastic.delete('rule', get.delete)
+            r.usleep(500000)
         end
     end
     
