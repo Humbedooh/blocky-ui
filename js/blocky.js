@@ -7,7 +7,7 @@ loadDashboard = function() {
 
 renderDashboard = function(json) {
   var h2, main;
-  main = get('main');
+  main = get('bread');
   h2 = mk('h2', {}, "Currently " + json.banned + " IP" + (json.banned !== 1 ? 's' : '') + " banned, " + json.whitelisted + " IP" + (json.whitelisted !== 1 ? 's' : '') + " whitelisted.");
   return app(main, h2);
 };
