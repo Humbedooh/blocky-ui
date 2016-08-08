@@ -48,7 +48,7 @@ manualBan = () ->
     
 submitBan = () ->
     ip = get('ip').value
-    if ip.length <= 8
+    if ip.length <= 6
         alert("Please enter a valid IP address!")
         return
     reason = get('reason').value
