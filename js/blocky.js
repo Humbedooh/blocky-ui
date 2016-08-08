@@ -28,6 +28,7 @@ renderRules = function(json, edit) {
     alert("Rules updated!");
   }
   app(main, mk('btn', {
+    type: "button",
     onclick: "addRule();",
     value: "Add a new rule"
   }));
