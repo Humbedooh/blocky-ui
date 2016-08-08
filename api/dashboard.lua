@@ -17,6 +17,51 @@ function handle(r)
         end
     end
     
+    if post.ban then
+        local reason = post.ban.reason
+        local ip = post.ban.ip
+        local target = post.ban.target or '*'
+        local who = r.user or "nobody"
+
+        local doc = {
+            ip = ip,
+            target = target,
+            reason = "Banned by " .. who .. ": " .. reason,
+            epoch = os.time(),
+            banTime = os.time()
+        }
+        local xdoc = elastic.get('ban', post.ban.ip)
+        if xdoc then
+            elastic.update('ban', post.ban.ip, doc)
+        else
+            elastic.index(r, post.ban.ip, 'ban', doc)
+        end
+        r.usleep(1000000)
+        end
+    end
+    
+    if post.whitelist then
+        local reason = post.whitelist.reason
+        local ip = post.whitelist.ip
+        local target = '*'
+        local who = r.user or "nobody"
+
+        local doc = {
+            ip = ip,
+            target = target,
+            reason = "Whitelisted by " .. who .. ": " .. reason,
+            epoch = os.time()
+        }
+        
+        local xdoc = elastic.get('whitelist', post.whitelist.ip)
+        if xdoc then
+            elastic.update('whitelist', post.whitelist.ip, doc)
+        else
+            elastic.index(r, post.whitelist.ip, 'whitelist', doc)
+        end
+        r.usleep(1000000)
+    end
+    
     local bans = elastic.count({}, 'ban')
     local whitelisted = elastic.count({}, 'whitelist')
     
