@@ -332,7 +332,7 @@ renderDashboard = function(json, edit) {
 };
 
 deleteBan = function(ip) {
-  return fetch("./api/dashboard.api?delete=" + ip, true, renderDashboard);
+  return fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard);
 };
 
 API = 1;

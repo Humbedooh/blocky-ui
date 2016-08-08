@@ -22,4 +22,4 @@ renderDashboard = (json, edit) ->
     
     
 deleteBan = (ip) ->
-    fetch("./api/dashboard.api?delete=" + ip, true, renderDashboard)
+    fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard)
