@@ -163,7 +163,7 @@ function count(query, doctype)
     checkReturn(hc)
     local json = JSON.decode(result)
     if json and json.count then
-        json = count
+        json = json.count
     else
         json = 0
     end
