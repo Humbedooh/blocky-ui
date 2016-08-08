@@ -310,7 +310,7 @@ renderDashboard = function(json) {
     for (l = 0, len = ref.length; l < len; l++) {
       ip = ref[l];
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
-      li = mk('li', {}, ip.ip + ": " + ip.reason + " - Ban last renewed renewed + " + renewDate);
+      li = mk('li', {}, ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate);
       app(ul, li);
     }
     app(main, ul);

@@ -10,7 +10,7 @@ renderDashboard = (json) ->
         ul = mk('ul')
         for ip in json.banlist
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
-            li = mk('li', {}, ip.ip + ": " + ip.reason + " - Ban last renewed renewed + " + renewDate)
+            li = mk('li', {}, ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate)
             app(ul, li)
         app(main, ul)
         if json.banlist.length < json.banned
