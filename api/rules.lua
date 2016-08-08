@@ -41,7 +41,7 @@ function handle(r)
             else
                 elastic.index(r, id, 'rule', doc)
             end
-            r:usleep(1000000)
+            r.usleep(1000000)
         end
     end
     
