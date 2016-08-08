@@ -447,9 +447,9 @@ renderWhitelist = function(json) {
       ]);
       app(ul, li);
     }
-    app(main, ul);
+    app(div, ul);
   } else {
-    app(main, mk('h4', {}, "There are no whitelisted IPs at the moment."));
+    app(div, mk('h4', {}, "There are no whitelisted IPs at the moment."));
   }
   form = mk('form');
   fd = mk('div', {

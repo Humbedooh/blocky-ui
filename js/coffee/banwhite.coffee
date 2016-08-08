@@ -90,9 +90,9 @@ renderWhitelist = (json) ->
         for ip in json.whitelist
             li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ip.ip), ": " + ip.reason + " - ", mk('a', { href: "javascript:void(deleteWhite('" + ip.ip+"'));"}, "Remove whitelisting")])
             app(ul, li)
-        app(main, ul)
+        app(div, ul)
     else
-        app(main, mk('h4', {}, "There are no whitelisted IPs at the moment."))
+        app(div, mk('h4', {}, "There are no whitelisted IPs at the moment."))
         
     form = mk('form')
     
