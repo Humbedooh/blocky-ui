@@ -162,7 +162,12 @@ function count(query, doctype)
     local out = {}
     checkReturn(hc)
     local json = JSON.decode(result)
-    return json or {}, url
+    if json and json.count then
+        json = count
+    else
+        json = 0
+    end
+    return json, url
 end
 
 -- Raw query with scroll/scan
