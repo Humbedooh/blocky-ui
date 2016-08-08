@@ -9,6 +9,7 @@ ruleTypes = {
 }
 
 ruleSpans = {
+    1: "1 hour"
     12: "12 hours"
     24: "One day (24 hours)"
     168: "One week (168 hours)"
