@@ -13,7 +13,7 @@ function handle(r)
         if doc then
             elastic.delete('ban', get.delete)
             doc.removeTime = time.time()
-            elastic.insert(r, get.delete, 'tmpwhite', doc)
+            elastic.index(r, get.delete, 'tmpwhite', doc)
         end
     end
     
