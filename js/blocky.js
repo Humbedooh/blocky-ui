@@ -238,7 +238,7 @@ submitRule = function(id) {
   }
   span = parseInt(span);
   query = [];
-  lines = get('rules').split(/\r?\n/);
+  lines = get('rules').value.split(/\r?\n/);
   for (l = 0, len = lines.length; l < len; l++) {
     line = lines[l];
     if (line.match(/^\S+=".+"$/) || line.match(/\S+=[0-9.]+$/)) {

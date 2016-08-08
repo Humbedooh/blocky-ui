@@ -140,7 +140,7 @@ submitRule = (id) ->
         return
     span = parseInt(span)
     query = []
-    lines = get('rules').split(/\r?\n/)
+    lines = get('rules').value.split(/\r?\n/)
     for line in lines
         if line.match(/^\S+=".+"$/) or line.match(/\S+=[0-9.]+$/)
             query.push(line)
