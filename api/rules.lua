@@ -45,9 +45,6 @@ function handle(r)
     end
     
     ruleList = elastic.raw ({
-            sort = {
-                {name = "asc"}
-            },
             size = 999
         }, 'rule')
     local rl = {}
