@@ -13,7 +13,10 @@ renderDashboard = (json, edit) ->
         ul = mk('ul')
         for ip in json.banlist
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
-            li = mk('li', {style: "font-size: 0.8rem;"}, [ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")])
+            ipname = ip.ip
+            if ip.dns and ip.dns != ip.ip
+                ipName += " (" + ip.dns + ")"
+            li = mk('li', {style: "font-size: 0.8rem;"}, [ipname + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")])
             app(ul, li)
         app(main, ul)
         if json.banlist.length < json.banned

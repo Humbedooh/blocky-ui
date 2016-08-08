@@ -302,7 +302,7 @@ loadDashboard = function(howMany) {
 };
 
 renderDashboard = function(json, edit) {
-  var h2, howMany, ip, l, len, li, main, ref, renewDate, ul;
+  var h2, howMany, ip, ipname, l, len, li, main, ref, renewDate, ul;
   main = get('bread');
   main.innerHTML = "";
   if (edit) {
@@ -316,10 +316,14 @@ renderDashboard = function(json, edit) {
     for (l = 0, len = ref.length; l < len; l++) {
       ip = ref[l];
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
+      ipname = ip.ip;
+      if (ip.dns && ip.dns !== ip.ip) {
+        ipName += " (" + ip.dns + ")";
+      }
       li = mk('li', {
         style: "font-size: 0.8rem;"
       }, [
-        ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
+        ipname + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
           href: "javascript:void(deleteBan('" + ip.ip + "'));"
         }, "Remove ban")
       ]);
