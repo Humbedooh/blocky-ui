@@ -6,7 +6,7 @@ loadDashboard = function(howMany) {
 };
 
 renderDashboard = function(json) {
-  var h2, howMany, ip, l, len, li, main, ref, ul;
+  var h2, howMany, ip, l, len, li, main, ref, renewDate, ul;
   main = get('bread');
   h2 = mk('h2', {}, "Currently " + json.banned + " IP" + (json.banned !== 1 ? 's' : '') + " banned, " + json.whitelisted + " IP" + (json.whitelisted !== 1 ? 's' : '') + " whitelisted.");
   app(main, h2);
@@ -15,7 +15,8 @@ renderDashboard = function(json) {
     ref = json.banlist;
     for (l = 0, len = ref.length; l < len; l++) {
       ip = ref[l];
-      li = mk('li', {}, ip.ip + ": " + ip.reason);
+      renewDate = new Date(ip.epoch * 1000.0).toUTCString();
+      li = mk('li', {}, ip.ip + ": " + ip.reason + " - Ban last renewed renewed + " + renewDate);
       app(ul, li);
     }
     app(main, ul);
