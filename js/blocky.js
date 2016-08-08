@@ -497,7 +497,9 @@ renderWhitelist = function(json) {
     value: "Whitelist IP",
     onclick: 'submitWhite();'
   });
-  return app(fd, btn);
+  app(fd, btn);
+  app(form, fd);
+  return app(div, form);
 };
 
 submitWhite = function() {

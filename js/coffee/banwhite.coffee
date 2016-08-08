@@ -115,6 +115,9 @@ renderWhitelist = (json) ->
     fd = mk('div', {style: "width: 100%; relative; overflow: auto;"})
     btn = mk('input', {type: 'button', class: 'btn btn-success', value: "Whitelist IP", onclick: 'submitWhite();'})
     app(fd, btn)
+    app(form, fd)
+    
+    app(div, form)
     
 submitWhite = () ->
     ip = get('ip').value
