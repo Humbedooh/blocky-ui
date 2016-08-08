@@ -43,6 +43,8 @@ manualBan = () ->
     fd = mk('div', {style: "width: 100%; relative; overflow: auto;"})
     btn = mk('input', {type: 'button', class: 'btn btn-success', value: "Ban IP", onclick: 'submitBan();'})
     app(fd, btn)
+    app(form, fd)
+    app(div, form)
     
 submitBan = () ->
     ip = get('ip').value

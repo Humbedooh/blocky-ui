@@ -379,7 +379,9 @@ manualBan = function() {
     value: "Ban IP",
     onclick: 'submitBan();'
   });
-  return app(fd, btn);
+  app(fd, btn);
+  app(form, fd);
+  return app(div, form);
 };
 
 submitBan = function() {
