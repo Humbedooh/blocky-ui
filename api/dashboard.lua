@@ -8,6 +8,14 @@ function handle(r)
     local get = r:parseargs()
     local post = input.parse(r)
     
+    if get.delete then
+        local doc = elastic.get('ban', get.delete)
+        if doc then
+            elastic.delete('ban', get.delete)
+            r.usleep(500000)
+        end
+    end
+    
     local bans = elastic.count({}, 'ban')
     local whitelisted = elastic.count({}, 'whitelist')
     

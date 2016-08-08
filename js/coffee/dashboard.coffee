@@ -1,8 +1,11 @@
 loadDashboard = (howMany) ->
     fetch("./api/dashboard.lua" + (if howMany then ('?hits='+howMany) else ''), null, renderDashboard)
     
-renderDashboard = (json) ->
+renderDashboard = (json, edit) ->
     main = get('bread')
+    main.innerHTML = ""
+    if edit
+        alert("Ban list updated!")
     h2 = mk('h2', {}, "Currently " + json.banned + " IP" + (if json.banned != 1 then 's' else '') + " banned, " + json.whitelisted + " IP" + (if json.whitelisted != 1 then 's' else '') + " whitelisted.")
     app(main, h2)
     
@@ -10,7 +13,7 @@ renderDashboard = (json) ->
         ul = mk('ul')
         for ip in json.banlist
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
-            li = mk('li', {}, ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate)
+            li = mk('li', {}, [ip.ip + ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")])
             app(ul, li)
         app(main, ul)
         if json.banlist.length < json.banned
@@ -18,3 +21,5 @@ renderDashboard = (json) ->
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
     
     
+deleteBan = (ip) ->
+    fetch("./api/dashboard.api?delete=" + ip, true, renderDashboard)
