@@ -57,7 +57,7 @@ showTrack = (json) ->
             app(tbl, tr)
         tr = mk('tr')
         for k, v of source
-            td = mk('td', {}, v)
+            td = mk('td', {}, v + "")
             app(tr, td)
         app(tbl, tr)
     

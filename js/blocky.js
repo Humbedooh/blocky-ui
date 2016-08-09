@@ -625,7 +625,7 @@ showTrack = function(json) {
     tr = mk('tr');
     for (k in source) {
       v = source[k];
-      td = mk('td', {}, v);
+      td = mk('td', {}, v + "");
       app(tr, td);
     }
     results.push(app(tbl, tr));
