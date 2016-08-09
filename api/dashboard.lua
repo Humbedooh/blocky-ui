@@ -21,7 +21,7 @@ function handle(r)
         local rule = elastic.get('rule', get.rule)
         if rule then
             local q = {}
-            for k, v in rule.query:gmatch("(%S+)=([^\r\n]+)") do
+            for k, v in pairs(rule.query) do
                 local num = v:match("^(%d+)$")
                 local str = v:match('"(.+)"')
                 if num then
