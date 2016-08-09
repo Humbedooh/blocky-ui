@@ -607,7 +607,7 @@ showTrack = function(json) {
   results = [];
   for (i = l = 0, len = ref.length; l < len; i = ++l) {
     item = ref[i];
-    if (i > 10) {
+    if (i > 25) {
       break;
     }
     source = item._source;
@@ -615,18 +615,22 @@ showTrack = function(json) {
       tr = mk('tr');
       for (k in source) {
         v = source[k];
-        td = mk('td', {
-          style: "font-weight: bold;"
-        }, k);
-        app(tr, td);
+        if (k !== 'time' && k !== 'timestamp') {
+          td = mk('td', {
+            style: "font-weight: bold;"
+          }, k);
+          app(tr, td);
+        }
       }
       app(tbl, tr);
     }
     tr = mk('tr');
     for (k in source) {
       v = source[k];
-      td = mk('td', {}, v + "");
-      app(tr, td);
+      if (k !== 'time' && k !== 'timestamp') {
+        td = mk('td', {}, v + "");
+        app(tr, td);
+      }
     }
     results.push(app(tbl, tr));
   }

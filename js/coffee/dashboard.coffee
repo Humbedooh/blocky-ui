@@ -46,19 +46,21 @@ showTrack = (json) ->
     tbl = mk('table')
     app(div, tbl)
     for item, i in json.res.hits.hits
-        if i > 10
+        if i > 25
             break
         source = item._source
         if i == 0
             tr = mk('tr')
             for k, v of source
-                td = mk('td', {style: "font-weight: bold;"}, k)
-                app(tr, td)
+                if k != 'time' and k != 'timestamp'
+                    td = mk('td', {style: "font-weight: bold;"}, k)
+                    app(tr, td)
             app(tbl, tr)
         tr = mk('tr')
         for k, v of source
-            td = mk('td', {}, v + "")
-            app(tr, td)
+            if k != 'time' and k != 'timestamp'
+                td = mk('td', {}, v + "")
+                app(tr, td)
         app(tbl, tr)
     
     
