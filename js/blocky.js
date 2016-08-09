@@ -600,7 +600,7 @@ showTrack = function(json) {
     });
     app(main, div);
   }
-  div.innerHTML = "<h3>Tracking data for " + ip + " using rule '" + json.rule.name + "':</h3>";
+  div.innerHTML = "<h3>Tracking data for " + json.ip + " using rule '" + json.rule.name + "':</h3>";
   tbl = mk('table');
   ref = json.res.hits.hits;
   for (i = l = 0, len = ref.length; l < len; i = ++l) {

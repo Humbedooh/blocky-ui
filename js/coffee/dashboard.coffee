@@ -41,7 +41,7 @@ showTrack = (json) ->
     if not div
         div = mk('div', { id: 'tracker', style: "border: 1px dotted #333; padding: 10px; font-size: 0.75rem;"})
         app(main, div)
-    div.innerHTML = "<h3>Tracking data for " + ip + " using rule '" + json.rule.name + "':</h3>"
+    div.innerHTML = "<h3>Tracking data for " + json.ip + " using rule '" + json.rule.name + "':</h3>"
     
     tbl = mk('table')
     for item, i in json.res.hits.hits
