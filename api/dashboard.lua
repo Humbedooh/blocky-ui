@@ -17,6 +17,45 @@ function handle(r)
         end
     end
     
+    if get.track and get.rule then
+        local rule = elastic.get('rule', get.rule)
+        if rule then
+            local q = {}
+            for k, v in rule.query:gmatch("(%S+)=([^\r\n]+)") do
+                local num = v:match("^(%d+)$")
+                local str = v:match('"(.+)"')
+                if num then
+                    table.insert(q, { term = { [k] = tonumber(num) }})
+                elseif str then
+                    table.insert(q, { term = { [k] = str }})
+                end
+            end
+            table.insert(q, { term = { clientip = get.track }})
+            local res = elastic.raw({
+                size = 500,
+                sort = {
+                    {
+                        ['@timestamp'] = {
+                            order = 'desc'
+                        }
+                    }
+                },
+                query = {
+                    bool = {
+                        must = q
+                    }
+                }
+            }, '', 'loggy-*')
+            r:puts(JSON.encode{
+                okay = true,
+                ip = get.track,
+                rule = rule,
+                res = res
+            })
+        end
+        return apache2.OK
+    end
+    
     if get.deletewhite then
         local doc = elastic.get('whitelist', get.deletewhite)
         if doc then

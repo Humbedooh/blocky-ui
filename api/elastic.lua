@@ -21,7 +21,8 @@ local http = require 'socket.http'
 local ltn12 = require("ltn12")
 local JSON = require 'cjson'
 local config = {
-    es_url = 'http://10.91.102.202:9200/blocky/'
+    es_url = 'http://10.91.102.202:9200/blocky/',
+    es_base = 'http://10.91.102.202:9200/'
 }
 
 local default_doc = "commit"
@@ -119,10 +120,13 @@ function getHeadersReverse(query, size, doc)
 end
 
 -- Do a raw ES query with a JSON query
-function raw(query, doctype)
+function raw(query, doctype, ind)
     local js = JSON.encode(query)
     doctype = doctype or default_doc
     local url = config.es_url .. doctype .. "/_search"
+    if ind then
+        url = config.es_base .. ind .. "/_search"
+    end
     local result, hc = http.request(url, js)
     local out = {}
     checkReturn(hc, result)
