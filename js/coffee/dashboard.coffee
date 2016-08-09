@@ -31,3 +31,33 @@ renderDashboard = (json, edit) ->
     
 deleteBan = (ip) ->
     fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard)
+
+trackBan = (ip, rid) ->
+    fetch("./api/dashboard.lua?track=" + ip + "&rule=" + rid, null, showTrack)
+    
+showTrack = (json) ->
+    main = get('bread')
+    div = get('tracker')
+    if not div
+        div = mk('div', { id: 'tracker', style: "border: 1px dotted #333; padding: 10px; font-size: 0.75rem;"})
+        app(main, div)
+    div.innerHTML = "<h3>Tracking data for " + ip + " using rule '" + json.rule.name + "':</h3>"
+    
+    tbl = mk('table')
+    for item, i in json.res.hits.hits
+        if i > 10
+            break
+        source = item._source
+        if i == 0
+            tr = mk('tr')
+            for k, v of source
+                td = mk('td', {style: "font-weight: bold;"}, k)
+                app(tr, td)
+            app(tbl, tr)
+        tr = mk('tr')
+        for k, v of source
+            td = mk('td', {}, v)
+            app(tr, td)
+        app(tbl, tr)
+    app(div, tbl)
+    
