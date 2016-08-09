@@ -536,7 +536,7 @@ loadDashboard = function(howMany) {
 };
 
 renderDashboard = function(json, edit) {
-  var h2, howMany, ip, ipname, l, len, li, main, ref, renewDate, ul;
+  var h2, howMany, ip, ipname, l, len, li, main, pt, ref, renewDate, tracker, ul;
   main = get('bread');
   main.innerHTML = "";
   if (edit) {
@@ -554,12 +554,20 @@ renderDashboard = function(json, edit) {
       if (ip.dns && ip.dns !== ip.ip) {
         ipname += " (" + ip.dns + ")";
       }
+      pt = "";
+      tracker = "";
+      if (ip.rid) {
+        pt = " - ";
+        tracker = mk('a', {
+          href: "javascript:void(trackBan('" + ip.ip + "', '" + ip.rid + "'));"
+        }, "Track");
+      }
       li = mk('li', {
         style: "font-size: 0.8rem;"
       }, [
         mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
           href: "javascript:void(deleteBan('" + ip.ip + "'));"
-        }, "Remove ban")
+        }, "Remove ban"), pt, tracker
       ]);
       app(ul, li);
     }

@@ -16,7 +16,12 @@ renderDashboard = (json, edit) ->
             ipname = ip.ip
             if ip.dns and ip.dns != ip.ip
                 ipname += " (" + ip.dns + ")"
-            li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")])
+            pt = ""
+            tracker = ""
+            if ip.rid
+                pt = " - "
+                tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
+            li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban"), pt, tracker])
             app(ul, li)
         app(main, ul)
         if json.banlist.length < json.banned
