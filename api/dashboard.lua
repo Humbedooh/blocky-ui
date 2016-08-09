@@ -22,12 +22,13 @@ function handle(r)
         if rule then
             local q = {}
             for k, v in pairs(rule.query) do
+                local key, v = v:match("^(%S+)=(.+)")
                 local num = v:match("^(%d+)$")
                 local str = v:match('"(.+)"')
                 if num then
-                    table.insert(q, { term = { [k] = tonumber(num) }})
+                    table.insert(q, { term = { [key] = tonumber(num) }})
                 elseif str then
-                    table.insert(q, { term = { [k] = str }})
+                    table.insert(q, { term = { [key] = str }})
                 end
             end
             table.insert(q, { term = { clientip = get.track }})
