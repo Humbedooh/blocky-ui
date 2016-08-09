@@ -52,13 +52,13 @@ showTrack = (json) ->
         if i == 0
             tr = mk('tr')
             for k, v of source
-                if k != 'time' and k != 'timestamp'
+                if k != 'time' and k != 'timestamp' and not k.match(/geo/)
                     td = mk('td', {style: "font-weight: bold;"}, k)
                     app(tr, td)
             app(tbl, tr)
         tr = mk('tr')
         for k, v of source
-            if k != 'time' and k != 'timestamp'
+            if k != 'time' and k != 'timestamp' and not k.match(/geo/)
                 td = mk('td', {}, v + "")
                 app(tr, td)
         app(tbl, tr)

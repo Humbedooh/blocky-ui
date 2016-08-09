@@ -615,7 +615,7 @@ showTrack = function(json) {
       tr = mk('tr');
       for (k in source) {
         v = source[k];
-        if (k !== 'time' && k !== 'timestamp') {
+        if (k !== 'time' && k !== 'timestamp' && !k.match(/geo/)) {
           td = mk('td', {
             style: "font-weight: bold;"
           }, k);
@@ -627,7 +627,7 @@ showTrack = function(json) {
     tr = mk('tr');
     for (k in source) {
       v = source[k];
-      if (k !== 'time' && k !== 'timestamp') {
+      if (k !== 'time' && k !== 'timestamp' && !k.match(/geo/)) {
         td = mk('td', {}, v + "");
         app(tr, td);
       }
