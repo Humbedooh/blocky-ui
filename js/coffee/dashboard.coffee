@@ -44,6 +44,7 @@ showTrack = (json) ->
     div.innerHTML = "<h3>Tracking data for " + json.ip + " using rule '" + json.rule.name + "':</h3>"
     
     tbl = mk('table')
+    app(div, tbl)
     for item, i in json.res.hits.hits
         if i > 10
             break
@@ -59,5 +60,5 @@ showTrack = (json) ->
             td = mk('td', {}, v)
             app(tr, td)
         app(tbl, tr)
-    app(div, tbl)
+    
     

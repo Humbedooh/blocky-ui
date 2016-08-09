@@ -590,7 +590,7 @@ trackBan = function(ip, rid) {
 };
 
 showTrack = function(json) {
-  var div, i, item, k, l, len, main, ref, source, tbl, td, tr, v;
+  var div, i, item, k, l, len, main, ref, results, source, tbl, td, tr, v;
   main = get('bread');
   div = get('tracker');
   if (!div) {
@@ -602,7 +602,9 @@ showTrack = function(json) {
   }
   div.innerHTML = "<h3>Tracking data for " + json.ip + " using rule '" + json.rule.name + "':</h3>";
   tbl = mk('table');
+  app(div, tbl);
   ref = json.res.hits.hits;
+  results = [];
   for (i = l = 0, len = ref.length; l < len; i = ++l) {
     item = ref[i];
     if (i > 10) {
@@ -626,9 +628,9 @@ showTrack = function(json) {
       td = mk('td', {}, v);
       app(tr, td);
     }
-    app(tbl, tr);
+    results.push(app(tbl, tr));
   }
-  return app(div, tbl);
+  return results;
 };
 
 API = 1;
