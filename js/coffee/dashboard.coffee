@@ -25,7 +25,7 @@ renderDashboard = (json, edit) ->
             app(ul, li)
         app(main, ul)
         if json.banlist.length < json.banned
-            howMany = (parseInt(json.banlist.Length / 20)+1) * 20
+            howMany = (parseInt(json.banlist.length / 20)+1) * 20
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
     
     
