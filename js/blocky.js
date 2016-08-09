@@ -601,7 +601,9 @@ showTrack = function(json) {
     app(main, div);
   }
   div.innerHTML = "<h3>Tracking data for " + json.ip + " using rule '" + json.rule.name + "':</h3>";
-  tbl = mk('table');
+  tbl = mk('table', {
+    border: "1"
+  });
   app(div, tbl);
   ref = json.res.hits.hits;
   results = [];
