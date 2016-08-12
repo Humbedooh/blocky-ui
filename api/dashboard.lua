@@ -67,9 +67,11 @@ function handle(r)
                     }
                 }
             },
-            query_string = {
-                default_field = "message",
-                query = get.qq
+            query = {
+                query_string = {
+                    default_field = "message",
+                    query = get.qq
+                }
             }
         }, '', 'loggy-*')
         r:puts(JSON.encode{
