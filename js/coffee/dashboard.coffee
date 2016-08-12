@@ -27,7 +27,14 @@ renderDashboard = (json, edit) ->
         if json.banlist.length < json.banned
             howMany = (parseInt(json.banlist.length / 20)+1) * 20
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
-    
+    qqf = mk('form', { onsubmit: "return doQQ();" })
+    qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
+    app(qqf, qqt)
+    app(main, qqf)
+
+doQQ = () ->
+    qq = get('qq').value
+    fetch("./api/dashboard.lua?qq=" + qq, null, showQQ)
     
 deleteBan = (ip) ->
     fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard)
@@ -42,6 +49,34 @@ showTrack = (json) ->
         div = mk('div', { id: 'tracker', style: "border: 1px dotted #333; padding: 10px; font-size: 0.75rem;"})
         app(main, div)
     div.innerHTML = "<h3>Tracking data for " + json.ip + " using rule '" + json.rule.name + "':</h3>"
+    
+    tbl = mk('table', { border: "1"})
+    app(div, tbl)
+    for item, i in json.res.hits.hits
+        if i > 25
+            break
+        source = item._source
+        if i == 0
+            tr = mk('tr')
+            for k, v of source
+                if k != 'time' and k != 'timestamp' and not k.match(/geo/)
+                    td = mk('td', {style: "font-weight: bold;"}, k)
+                    app(tr, td)
+            app(tbl, tr)
+        tr = mk('tr')
+        for k, v of source
+            if k != 'time' and k != 'timestamp' and not k.match(/geo/)
+                td = mk('td', {}, v + "")
+                app(tr, td)
+        app(tbl, tr)
+    
+showQQ = (json) ->
+    main = get('bread')
+    div = get('tracker')
+    if not div
+        div = mk('div', { id: 'tracker', style: "border: 1px dotted #333; padding: 10px; font-size: 0.75rem;"})
+        app(main, div)
+    div.innerHTML = "<h3>Quick query results (" + json.res.hits.hits.length + "):</h3>"
     
     tbl = mk('table', { border: "1"})
     app(div, tbl)

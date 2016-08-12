@@ -57,6 +57,28 @@ function handle(r)
         return apache2.OK
     end
     
+    if get.qq then
+        local res = elastic.raw({
+            size = 500,
+            sort = {
+                {
+                    ['@timestamp'] = {
+                        order = 'desc'
+                    }
+                }
+            },
+            query_string = {
+                default_field = "message",
+                query = get.qq
+            }
+        }, '', 'loggy-*')
+        r:puts(JSON.encode{
+            okay = true,
+            res = res
+        })
+        return apache2.OK
+    end
+    
     if get.deletewhite then
         local doc = elastic.get('whitelist', get.deletewhite)
         if doc then
