@@ -595,7 +595,8 @@ renderDashboard = function(json, edit) {
 doQQ = function() {
   var qq;
   qq = get('qq').value;
-  return fetch("./api/dashboard.lua?qq=" + qq, null, showQQ);
+  fetch("./api/dashboard.lua?qq=" + qq, null, showQQ);
+  return false;
 };
 
 deleteBan = function(ip) {

@@ -35,6 +35,7 @@ renderDashboard = (json, edit) ->
 doQQ = () ->
     qq = get('qq').value
     fetch("./api/dashboard.lua?qq=" + qq, null, showQQ)
+    return false
     
 deleteBan = (ip) ->
     fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard)
