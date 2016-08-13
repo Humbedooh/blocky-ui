@@ -77,6 +77,8 @@ showQQ = (json) ->
     if not div
         div = mk('div', { id: 'tracker', style: "border: 1px dotted #333; padding: 10px; font-size: 0.75rem;"})
         app(main, div)
+    if not isArray(json.res.hits.hits)
+        json.res.hits.hits = []
     div.innerHTML = "<h3>Quick query results (" + json.res.hits.hits.length + "):</h3>"
     
     tbl = mk('table', { border: "1"})
@@ -98,5 +100,6 @@ showQQ = (json) ->
                 td = mk('td', {}, v + "")
                 app(tr, td)
         app(tbl, tr)
-    
+    if json.res.hits.hits.length == 0
+        app(div, "No results were found")
     

@@ -658,7 +658,7 @@ showTrack = function(json) {
 };
 
 showQQ = function(json) {
-  var div, i, item, k, l, len, main, ref, results, source, tbl, td, tr, v;
+  var div, i, item, k, l, len, main, ref, source, tbl, td, tr, v;
   main = get('bread');
   div = get('tracker');
   if (!div) {
@@ -668,13 +668,15 @@ showQQ = function(json) {
     });
     app(main, div);
   }
+  if (!isArray(json.res.hits.hits)) {
+    json.res.hits.hits = [];
+  }
   div.innerHTML = "<h3>Quick query results (" + json.res.hits.hits.length + "):</h3>";
   tbl = mk('table', {
     border: "1"
   });
   app(div, tbl);
   ref = json.res.hits.hits;
-  results = [];
   for (i = l = 0, len = ref.length; l < len; i = ++l) {
     item = ref[i];
     if (i > 25) {
@@ -702,9 +704,11 @@ showQQ = function(json) {
         app(tr, td);
       }
     }
-    results.push(app(tbl, tr));
+    app(tbl, tr);
   }
-  return results;
+  if (json.res.hits.hits.length === 0) {
+    return app(div, "No results were found");
+  }
 };
 
 API = 1;
