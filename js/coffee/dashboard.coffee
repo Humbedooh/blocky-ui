@@ -101,5 +101,5 @@ showQQ = (json) ->
                 app(tr, td)
         app(tbl, tr)
     if json.res.hits.hits.length == 0
-        app(div, "No results were found")
+        app(div, txt("No results were found"))
     

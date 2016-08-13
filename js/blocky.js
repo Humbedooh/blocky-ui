@@ -707,7 +707,7 @@ showQQ = function(json) {
     app(tbl, tr);
   }
   if (json.res.hits.hits.length === 0) {
-    return app(div, "No results were found");
+    return app(div, txt("No results were found"));
   }
 };
 
