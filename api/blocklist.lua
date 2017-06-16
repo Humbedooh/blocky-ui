@@ -18,7 +18,9 @@ function handle(r)
     if banList and banList.hits.hits then
         for k, v in pairs(banList.hits.hits) do
             local b = v._source
-            b.ip = v._id
+            if not b.ip then
+                b.ip = v._id
+            end
             local good = false
             for xk, xv in pairs(whitelist) do
                 if b.ip == xv.request_id then
