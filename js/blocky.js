@@ -343,7 +343,7 @@ manualBan = function() {
     'id': 'reason'
   }));
   fih = mk('div', {
-    style: "float: left; width: 250px; font-style: italic;"
+    style: "float: left; width: 450px; font-style: italic;"
   }, "A short description of why this ban is in place");
   app(fd, fdd);
   app(fd, fid);

@@ -24,7 +24,7 @@ manualBan = () ->
     fd = mk('div', {style: "width: 100%; relative; overflow: auto; border-bottom: 1px solid #CCC; padding-bottom: 6px; margin-bottom: 6px;"})
     fdd = mk('div', { style: "float: left; width: 150px; font-weight: bold;"}, "Reason for ban: ")
     fid = mk('div', { style: "float: left; width: 350px;"}, mk('input', { style: 'width: 200px;', type:'text', 'id':'reason'}))
-    fih = mk('div', { style: "float: left; width: 250px; font-style: italic;"}, "A short description of why this ban is in place")
+    fih = mk('div', { style: "float: left; width: 450px; font-style: italic;"}, "A short description of why this ban is in place")
     app(fd, fdd)
     app(fd, fid)
     app(fd, fih)
