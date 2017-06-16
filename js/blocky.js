@@ -539,10 +539,11 @@ findRule = function() {
   var ip;
   ip = get('findrule').value;
   if (ip) {
-    return fetch("./api/dashboard.lua?hits=9999", {
+    fetch("./api/dashboard.lua?hits=9999", {
       ip: ip
     }, showRule);
   }
+  return false;
 };
 
 showRule = function(json, state) {

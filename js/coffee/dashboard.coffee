@@ -6,6 +6,7 @@ findRule = () ->
     ip = get('findrule').value
     if ip
         fetch("./api/dashboard.lua?hits=9999", {ip: ip}, showRule)
+    return false
         
 showRule = (json, state) ->
     found = false
