@@ -1270,7 +1270,10 @@ loadBread = function(what) {
   if (what === 'recent') {
     loadDashboard();
   }
-  if (what === 'whitelst') {
+  if (what === 'rules') {
+    loadRules();
+  }
+  if (what === 'whitelist') {
     whiteList();
   }
   if (what === 'manual') {
