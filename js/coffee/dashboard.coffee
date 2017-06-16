@@ -12,7 +12,7 @@ showRule = (json, state) ->
     if isArray(json.banlist) and json.banlist.length > 0
         main = get('bread')
         main.innerHTML = ""
-        ul = mk('ul')
+        ul = mk('ul', {style: 'text-align: left;'})
         for ip in json.banlist
             if ip.ip == state.ip
                 found = true
@@ -30,12 +30,6 @@ showRule = (json, state) ->
         app(main, ul)
     if not found
         alert("No bans found for #{state.ip}!")
-    app(main, mk('a', { href:"javascript:void(loadDashboard(25));"}, "Back to default list..."))
-    app(main, mk('a', { style: "margin-left: 20px;", href:"javascript:void(findRule());"}, "Find ban..."))
-    qqf = mk('form', { onsubmit: "return doQQ();" })
-    qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
-    app(qqf, qqt)
-    app(main, qqf)
     
 renderDashboard = (json, edit) ->
     main = get('bread')
@@ -63,7 +57,10 @@ renderDashboard = (json, edit) ->
         if json.banlist.length < json.banned
             howMany = (parseInt(json.banlist.length / 25)+1) * 25
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
-            app(main, mk('a', { style: "margin-left: 20px;", href:"javascript:void(findRule());"}, "Find ban..."))
+
+loadQQ = () ->
+    main = get('bread')
+    main.innerHTML = ""
     qqf = mk('form', { onsubmit: "return doQQ();" })
     qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
     app(qqf, qqt)

@@ -2,13 +2,14 @@
 loadTabs = (stab) ->
     tabs = {
         recent: 'Recent activity',
-        search: 'Find a ban',
+        search: 'Search the archive'
+        findban: 'Find a ban',
         rules: 'Ban rules',
         manual: 'Manual ban',
         whitelist: 'Whitelist'
     }
     
-    main = new HTML('div', { style: { position: 'relative', float: 'left', background: "linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%)", width: '90%', minWidth: '1200px', height: '700px', borderRadius: '5px', border: '1px solid #444'}})
+    main = new HTML('div', { style: { position: 'relative', float: 'left', background: "linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%)", width: '90%', maxWidth: '1600px', minWidth: '1200px', height: '700px', borderRadius: '5px', border: '1px solid #444'}})
     document.getElementById('wrapper').innerHTML = ""
     document.getElementById('wrapper').appendChild(main)
     
@@ -38,6 +39,8 @@ loadBread = (what) ->
     if what == 'manual'
         manualBan();
     if what == 'search'
+        loadQQ();
+    if what == 'findban'
         findRule();
     
 
