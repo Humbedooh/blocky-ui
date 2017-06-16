@@ -30,6 +30,7 @@ showRule = (json, state) ->
         app(main, ul)
     if not found
         alert("No bans found for #{state.ip}!")
+    app(main, mk('a', { href:"javascript:void(loadDashboard(25));"}, "Back to default list..."))
     app(main, mk('a', { style: "margin-left: 20px;", href:"javascript:void(findRule());"}, "Find ban..."))
     qqf = mk('form', { onsubmit: "return doQQ();" })
     qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
@@ -60,7 +61,7 @@ renderDashboard = (json, edit) ->
             app(ul, li)
         app(main, ul)
         if json.banlist.length < json.banned
-            howMany = (parseInt(json.banlist.length / 20)+1) * 20
+            howMany = (parseInt(json.banlist.length / 25)+1) * 25
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
             app(main, mk('a', { style: "margin-left: 20px;", href:"javascript:void(findRule());"}, "Find ban..."))
     qqf = mk('form', { onsubmit: "return doQQ();" })
@@ -90,7 +91,7 @@ showTrack = (json) ->
     tbl = mk('table', { border: "1"})
     app(div, tbl)
     for item, i in json.res.hits.hits
-        if i > 25
+        if i > 100
             break
         source = item._source
         if i == 0
@@ -120,7 +121,7 @@ showQQ = (json) ->
     tbl = mk('table', { border: "1"})
     app(div, tbl)
     for item, i in json.res.hits.hits
-        if i > 25
+        if i > 100
             break
         source = item._source
         if i == 0

@@ -584,6 +584,9 @@ showRule = function(json, state) {
     alert("No bans found for " + state.ip + "!");
   }
   app(main, mk('a', {
+    href: "javascript:void(loadDashboard(25));"
+  }, "Back to default list..."));
+  app(main, mk('a', {
     style: "margin-left: 20px;",
     href: "javascript:void(findRule());"
   }, "Find ban..."));
@@ -638,7 +641,7 @@ renderDashboard = function(json, edit) {
     }
     app(main, ul);
     if (json.banlist.length < json.banned) {
-      howMany = (parseInt(json.banlist.length / 20) + 1) * 20;
+      howMany = (parseInt(json.banlist.length / 25) + 1) * 25;
       app(main, mk('a', {
         href: "javascript:void(loadDashboard(" + howMany + "));"
       }, "Show more..."));
@@ -696,7 +699,7 @@ showTrack = function(json) {
   results = [];
   for (i = l = 0, len = ref.length; l < len; i = ++l) {
     item = ref[i];
-    if (i > 25) {
+    if (i > 100) {
       break;
     }
     source = item._source;
@@ -748,7 +751,7 @@ showQQ = function(json) {
   ref = json.res.hits.hits;
   for (i = l = 0, len = ref.length; l < len; i = ++l) {
     item = ref[i];
-    if (i > 25) {
+    if (i > 100) {
       break;
     }
     source = item._source;
