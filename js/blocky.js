@@ -324,7 +324,7 @@ manualBan = function() {
   }));
   fih = mk('div', {
     style: "float: left; width: 250px; font-style: italic;"
-  }, "The IPv4/IPv6 address to ban");
+  }, "The IPv4/IPv6 address (or CIDR block) to ban");
   app(fd, fdd);
   app(fd, fid);
   app(fd, fih);
