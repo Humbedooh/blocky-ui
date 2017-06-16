@@ -60,6 +60,7 @@ a {
     overflow: auto;
     background: #FAFAD0;
     border: 2px groove #444;
+    text-align: left;
 }
 
 h2 {
