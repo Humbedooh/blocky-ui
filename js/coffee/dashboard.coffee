@@ -1,3 +1,4 @@
+
 loadDashboard = (howMany) ->
     fetch("./api/dashboard.lua" + (if howMany then ('?hits='+howMany) else ''), null, renderDashboard)
     
