@@ -323,7 +323,7 @@ manualBan = function() {
     'id': 'ip'
   }));
   fih = mk('div', {
-    style: "float: left; width: 250px; font-style: italic;"
+    style: "float: left; width: 450px; font-style: italic;"
   }, "The IPv4/IPv6 address (or CIDR block) to ban");
   app(fd, fdd);
   app(fd, fid);
@@ -364,7 +364,7 @@ manualBan = function() {
     value: '*'
   }));
   fih = mk('div', {
-    style: "float: left; width: 250px; font-style: italic;"
+    style: "float: left; width: 450px; font-style: italic;"
   }, "The target machine hostname to ban on. Default is *, which means all machines. Can also be a specific machine, like eos.apache.org.");
   app(fd, fdd);
   app(fd, fid);
