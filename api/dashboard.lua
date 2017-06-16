@@ -135,9 +135,9 @@ function handle(r)
     local bans = elastic.count({}, 'ban')
     local whitelist = elastic.find('*', 9999, 'whitelist')
     
-    local banSize = 20
+    local banSize = 25
     if get.hits then
-        banSize = tonumber(get.hits) or 20
+        banSize = tonumber(get.hits) or 25
     end
     
     banList = elastic.raw ({
