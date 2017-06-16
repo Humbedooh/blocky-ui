@@ -83,9 +83,10 @@ function handle(r)
     end
     
     if get.deletewhite then
-        local doc = elastic.get('whitelist', get.deletewhite)
+        local docid = get.deletewhite:gsub("/", "_")
+        local doc = elastic.get('whitelist',docid)
         if doc then
-            elastic.delete('whitelist', get.deletewhite)
+            elastic.delete('whitelist', docid)
         end
     end
     
@@ -115,6 +116,7 @@ function handle(r)
     if post.whitelist then
         local reason = post.whitelist.reason
         local ip = post.whitelist.ip
+        local docid = ip:gsub("/", "_")
         local target = '*'
         local who = r.user or "nobody"
 
@@ -125,11 +127,11 @@ function handle(r)
             epoch = os.time()
         }
         
-        local xdoc = elastic.get('whitelist', post.whitelist.ip)
+        local xdoc = elastic.get('whitelist', docid)
         if xdoc then
-            elastic.update('whitelist', post.whitelist.ip, doc)
+            elastic.update('whitelist', docid, doc)
         else
-            elastic.index(r, post.whitelist.ip, 'whitelist', doc)
+            elastic.index(r, docid, 'whitelist', doc)
         end
         r.usleep(1000000)
     end
