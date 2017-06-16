@@ -3,7 +3,7 @@ loadDashboard = (howMany) ->
     fetch("./api/dashboard.lua" + (if howMany then ('?hits='+howMany) else ''), null, renderDashboard)
     
 findRule = () ->
-    ip = prompt("Enter IP to look for:")
+    ip = get('findrule').value
     if ip
         fetch("./api/dashboard.lua?hits=9999", {ip: ip}, showRule)
         
@@ -63,6 +63,14 @@ loadQQ = () ->
     main.innerHTML = ""
     qqf = mk('form', { onsubmit: "return doQQ();" })
     qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
+    app(qqf, qqt)
+    app(main, qqf)
+
+loadFindRule = () ->
+    main = get('bread')
+    main.innerHTML = ""
+    qqf = mk('form', { onsubmit: "return findRule();" })
+    qqt = mk('input', { type: "text", style: "width: 500px;", id: "findrule", placeholder: "IP address or CIDR block to find..."})
     app(qqf, qqt)
     app(main, qqf)
 

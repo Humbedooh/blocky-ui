@@ -41,6 +41,6 @@ loadBread = (what) ->
     if what == 'search'
         loadQQ();
     if what == 'findban'
-        findRule();
+        loadFindRule();
     
 
