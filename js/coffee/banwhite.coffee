@@ -1,3 +1,4 @@
+
 manualBan = () ->
     main = get('bread')
     div = get('addrule')

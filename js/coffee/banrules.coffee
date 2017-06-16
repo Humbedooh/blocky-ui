@@ -1,3 +1,4 @@
+
 loadRules = () ->
     fetch("./api/rules.lua", null, renderRules)
     
