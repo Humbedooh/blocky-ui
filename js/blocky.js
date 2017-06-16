@@ -1215,14 +1215,13 @@ loadTabs = function(stab) {
   main = new HTML('div', {
     style: {
       position: 'relative',
-      float: 'left',
-      background: "linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%)",
+      display: 'inline-block',
+      background: "#eee",
       width: '90%',
       maxWidth: '1600px',
       minWidth: '1200px',
       height: '700px',
-      borderRadius: '5px',
-      border: '1px solid #444'
+      borderRadius: '3px'
     }
   });
   document.getElementById('wrapper').innerHTML = "";

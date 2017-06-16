@@ -2,7 +2,7 @@ html {
     height: 100%;
 }
 html {
-    background: linear-gradient(to bottom, #499bea 0%,#207ce5 100%);
+    background: #666;
     font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
     color: #222;
     height: 100%;
@@ -18,23 +18,25 @@ a {
 }
 
 .tabs {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: linear-gradient(to bottom, #45484d 0%,#000000 100%);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     float: left;
     height: 36px;
     width: 100%;
     text-align: center;
+    background: #666;
 }
 
 .tablink {
-    color: #EEE;
+    background: linear-gradient(to bottom, #eeeeee 0%,#d5d5d5 100%);
+    color: #555;
     padding-top: 10px;
     float: left;
     height: 26px;
     width: 150px;
     text-align: center;
-    border-right: 2px groove #777;
+    border-right: 4px solid #666;
+    box-shadow: inset 0px -1px 2px rgba(0,0,0,0.75);
 }
 
 .tablink:first-child {
@@ -48,23 +50,28 @@ a {
 }
 
 .tablink_selected {
-    background: rgba(200,200,200,0.5);
+    border-bottom: none;
+    box-shadow: none;
     cursor: default;
+    color: #333;
+    background: #eee;
 }
 
 .bread {
+    
     margin: 0 auto;
     padding:8px;
     height: 664px;
     width: calc(100% - 20px);
     overflow: auto;
-    background: #FAFAD0;
-    border: 2px groove #444;
+    background: #eee;
     text-align: left;
 }
 
 h2 {
     text-align: center;
+    padding-top: 28px;
+    margin-bottom: 8px;
 }
 
 #topMenu {
