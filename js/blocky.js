@@ -544,7 +544,7 @@ findRule = function() {
 };
 
 showRule = function(json, state) {
-  var found, ip, ipname, l, len, li, main, pt, ref, renewDate, tracker, ul;
+  var found, ip, ipname, l, len, li, main, pt, qqf, qqt, ref, renewDate, tracker, ul;
   found = false;
   if (isArray(json.banlist) && json.banlist.length > 0) {
     main = get('bread');
@@ -583,7 +583,17 @@ showRule = function(json, state) {
   if (!found) {
     alert("No bans found for " + state.ip + "!");
   }
-  return renderDashboard({});
+  qqf = mk('form', {
+    onsubmit: "return doQQ();"
+  });
+  qqt = mk('input', {
+    type: "text",
+    style: "width: 500px;",
+    id: "qq",
+    placeholder: "Quick query..."
+  });
+  app(qqf, qqt);
+  return app(main, qqf);
 };
 
 renderDashboard = function(json, edit) {

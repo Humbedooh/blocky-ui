@@ -30,7 +30,10 @@ showRule = (json, state) ->
         app(main, ul)
     if not found
         alert("No bans found for #{state.ip}!")
-    renderDashboard({})
+    qqf = mk('form', { onsubmit: "return doQQ();" })
+    qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
+    app(qqf, qqt)
+    app(main, qqf)
     
 renderDashboard = (json, edit) ->
     main = get('bread')
