@@ -30,6 +30,7 @@ showRule = (json, state) ->
         app(main, ul)
     if not found
         alert("No bans found for #{state.ip}!")
+    app(main, mk('a', { style: "margin-left: 20px;", href:"javascript:void(findRule());"}, "Find ban..."))
     qqf = mk('form', { onsubmit: "return doQQ();" })
     qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
     app(qqf, qqt)
