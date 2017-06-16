@@ -9,11 +9,12 @@ function handle(r)
     local post = input.parse(r)
     
     if get.delete then
-        local doc = elastic.get('ban', get.delete)
+        local docid = get.delete:gsub("/", "_")
+        local doc = elastic.get('ban', docid)
         if doc then
-            elastic.delete('ban', get.delete)
+            elastic.delete('ban', docid)
             doc.removeTime = os.time()
-            elastic.index(r, get.delete, 'tmpwhite', doc)
+            elastic.index(r, docid, 'tmpwhite', doc)
         end
     end
     
@@ -91,6 +92,7 @@ function handle(r)
     if post.ban then
         local reason = post.ban.reason
         local ip = post.ban.ip
+        local docid = ip:gsub("/", "_")
         local target = post.ban.target or '*'
         local who = r.user or "nobody"
 
@@ -101,11 +103,11 @@ function handle(r)
             epoch = os.time(),
             banTime = os.time()
         }
-        local xdoc = elastic.get('ban', post.ban.ip)
+        local xdoc = elastic.get('ban', docid)
         if xdoc then
-            elastic.update('ban', post.ban.ip, doc)
+            elastic.update('ban', docid, doc)
         else
-            elastic.index(r, post.ban.ip, 'ban', doc)
+            elastic.index(r, docid, 'ban', doc)
         end
         r.usleep(1000000)
     end
