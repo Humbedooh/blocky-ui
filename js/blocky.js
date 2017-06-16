@@ -597,7 +597,7 @@ renderDashboard = function(json, edit) {
   if (edit) {
     alert("Ban list updated!");
   }
-  h2 = mk('h2', {}, "Currently " + json.banned + " IP" + (json.banned !== 1 ? 's' : '') + " banned, " + json.whitelisted + " IP" + (json.whitelisted !== 1 ? 's' : '') + " whitelisted.");
+  h2 = mk('h2', {}, "Currently " + json.banned.pretty() + " IP" + (json.banned !== 1 ? 's' : '') + " banned, " + json.whitelisted + " IP" + (json.whitelisted !== 1 ? 's' : '') + " whitelisted.");
   app(main, h2);
   if (isArray(json.banlist) && json.banlist.length > 0) {
     ul = mk('ul');
