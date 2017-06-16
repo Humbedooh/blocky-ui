@@ -1,6 +1,33 @@
 loadDashboard = (howMany) ->
     fetch("./api/dashboard.lua" + (if howMany then ('?hits='+howMany) else ''), null, renderDashboard)
     
+findRule = () ->
+    ip = prompt("Enter IP to look for:")
+    if ip
+        fetch("./api/dashboard.lua?hits=9999", {ip: ip}, showRule)
+        
+showRule = (json, state) ->
+    found = false
+    if isArray(json.banlist) and json.banlist.length > 0
+        ul = mk('ul')
+        for ip in json.banlist
+            if ip.ip == state.ip
+                found = true
+                renewDate = new Date(ip.epoch * 1000.0).toUTCString()
+                ipname = ip.ip
+                if ip.dns and ip.dns != ip.ip
+                    ipname += " (" + ip.dns + ")"
+                pt = ""
+                tracker = ""
+                if ip.rid
+                    pt = " - "
+                    tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
+                li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban"), pt, tracker])
+                app(ul, li)
+        app(main, ul)
+    if not found
+        alert("No bans found for #{state.ip}!")
+    
 renderDashboard = (json, edit) ->
     main = get('bread')
     main.innerHTML = ""
@@ -27,6 +54,7 @@ renderDashboard = (json, edit) ->
         if json.banlist.length < json.banned
             howMany = (parseInt(json.banlist.length / 20)+1) * 20
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
+            app(main, mk('a', { style: "margin-left: 20px;", href:"javascript:void(findRule());"}, "Find ban..."))
     qqf = mk('form', { onsubmit: "return doQQ();" })
     qqt = mk('input', { type: "text", style: "width: 500px;", id: "qq", placeholder: "Quick query..."})
     app(qqf, qqt)
