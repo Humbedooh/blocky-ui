@@ -8,7 +8,7 @@ loadTabs = (stab) ->
         whitelist: 'Whitelist'
     }
     
-    main = new HTML('div', { style: { position: 'relative', float: 'left', background: "linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%)", width: '1100px', height: '700px', borderRadius: '5px', border: '1px solid #444'}})
+    main = new HTML('div', { style: { position: 'relative', float: 'left', background: "linear-gradient(to bottom, #eeeeee 0%,#eeeeee 100%)", width: '90%', minWidth: '1200px', height: '700px', borderRadius: '5px', border: '1px solid #444'}})
     document.getElementById('wrapper').innerHTML = ""
     document.getElementById('wrapper').appendChild(main)
     
