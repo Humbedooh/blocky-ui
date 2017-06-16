@@ -581,8 +581,9 @@ showRule = function(json, state) {
     app(main, ul);
   }
   if (!found) {
-    return alert("No bans found for " + state.ip + "!");
+    alert("No bans found for " + state.ip + "!");
   }
+  return renderDashboard({});
 };
 
 renderDashboard = function(json, edit) {

@@ -30,6 +30,7 @@ showRule = (json, state) ->
         app(main, ul)
     if not found
         alert("No bans found for #{state.ip}!")
+    renderDashboard({})
     
 renderDashboard = (json, edit) ->
     main = get('bread')
