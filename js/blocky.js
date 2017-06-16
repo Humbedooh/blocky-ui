@@ -544,9 +544,11 @@ findRule = function() {
 };
 
 showRule = function(json, state) {
-  var found, ip, ipname, l, len, li, pt, ref, renewDate, tracker, ul;
+  var found, ip, ipname, l, len, li, main, pt, ref, renewDate, tracker, ul;
   found = false;
   if (isArray(json.banlist) && json.banlist.length > 0) {
+    main = get('bread');
+    main.innerHTML = "";
     ul = mk('ul');
     ref = json.banlist;
     for (l = 0, len = ref.length; l < len; l++) {

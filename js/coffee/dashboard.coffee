@@ -10,6 +10,8 @@ findRule = () ->
 showRule = (json, state) ->
     found = false
     if isArray(json.banlist) and json.banlist.length > 0
+        main = get('bread')
+        main.innerHTML = ""
         ul = mk('ul')
         for ip in json.banlist
             if ip.ip == state.ip
