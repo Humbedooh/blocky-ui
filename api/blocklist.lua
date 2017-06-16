@@ -39,11 +39,11 @@ function handle(r)
     end
     local list = {}
     for k, v in pairs(whitelist) do
-        table.insert(list, { ip = v.request_id, unban = true, target = "*" })
+        table.insert(list, { ip = v.ip, unban = true, target = "*" })
     end
     for k, v in pairs(greylist) do
         if v.removeTime > (os.time() - 86400) then
-            table.insert(list, { ip = v.request_id, unban = true, target = "*" })
+            table.insert(list, { ip = v.ip, unban = true, target = "*" })
         end
     end
     for k, v in pairs(bl) do
