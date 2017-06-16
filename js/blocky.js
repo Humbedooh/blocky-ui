@@ -604,7 +604,7 @@ renderDashboard = function(json, edit) {
     for (l = 0, len = ref.length; l < len; l++) {
       ip = ref[l];
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
-      ipname = ip.ip;
+      ipname = ip.ip.replace("_", "/");
       if (ip.dns && ip.dns !== ip.ip) {
         ipname += " (" + ip.dns + ")";
       }

@@ -43,7 +43,7 @@ renderDashboard = (json, edit) ->
         ul = mk('ul')
         for ip in json.banlist
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
-            ipname = ip.ip
+            ipname = ip.ip.replace("_", "/")
             if ip.dns and ip.dns != ip.ip
                 ipname += " (" + ip.dns + ")"
             pt = ""
