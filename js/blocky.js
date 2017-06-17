@@ -648,7 +648,7 @@ renderDashboard = function(json, edit) {
 };
 
 showList = function(list, main) {
-  var color, g, howMany, ip, ipname, l, len, pt, renewDate, since, tbl, tr, tracker;
+  var color, howMany, ip, ipname, l, len, pt, r, renewDate, since, tbl, tr, tracker;
   if (isArray(list) && list.length > 0) {
     tbl = new HTML('table');
     tr = new HTML('tr', {}, [new HTML('th', {}, 'IP/Block'), new HTML('th', {}, 'Last renewed'), new HTML('th', {}, 'Reason'), new HTML('th', {}, 'Actions')]);
@@ -657,9 +657,9 @@ showList = function(list, main) {
       ip = list[l];
       since = ((Date.now() / 1000) - ip.epoch) / 86400;
       color = "#000";
-      if (since < 1) {
-        g = 255 * since;
-        color = "rgba(0,0," + g + ", 1)";
+      if (since <= 1) {
+        r = 255 * (1 - since);
+        color = "rgba(" + r + ",0,0, 1)";
       }
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
       ipname = ip.ip.replace("_", "/");

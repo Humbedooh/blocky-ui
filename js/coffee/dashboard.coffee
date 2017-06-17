@@ -56,9 +56,9 @@ showList = (list, main) ->
         for ip in list
             since = ((Date.now()/1000) - ip.epoch) / 86400
             color = "#000"
-            if since < 1
-                g = 255 * since
-                color = "rgba(0,0,#{g}, 1)"
+            if since <= 1
+                r = 255 * (1-since)
+                color = "rgba(#{r},0,0, 1)"
                 
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
             ipname = ip.ip.replace("_", "/")
