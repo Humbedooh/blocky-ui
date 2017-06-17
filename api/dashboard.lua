@@ -180,7 +180,7 @@ function handle(r)
             b.ip = v._id
             if b.ip ~= get.delete then
                 table.insert(bl, b)
-                if b.manualBan or b.who then
+                if b.manualBan or b.reason:match("^Banned by %S+") then
                     table.insert(mbans, b)
                 end
             end
