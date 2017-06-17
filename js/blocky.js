@@ -673,7 +673,7 @@ renderDashboard = function(json, edit) {
     }
     app(main, ul);
     if (json.banlist.length < json.banned) {
-      howMany = (parseInt(json.banlist.length / 25) + 1) * 25;
+      howMany = (parseInt(json.banlist.length / 50) + 1) * 50;
       return app(main, mk('a', {
         href: "javascript:void(loadDashboard(" + howMany + "));"
       }, "Show more..."));
