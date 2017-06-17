@@ -46,7 +46,7 @@ a {
 .tablink:hover:not(.tablink_selected) {
     color: #333;
     cursor: pointer;
-    background: #EED;
+    background: #EEC;
 }
 
 .tablink_selected {
