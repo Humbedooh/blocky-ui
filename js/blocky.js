@@ -670,10 +670,12 @@ showList = function(list, main) {
       tbl.inject(tr);
     }
     app(main, tbl);
-    howMany = (parseInt(list.length / 50) + 1) * 50;
-    return app(main, mk('a', {
-      href: "javascript:void(loadDashboard(" + howMany + "));"
-    }, "Show more..."));
+    if (currentTab === 'recent') {
+      howMany = (parseInt(list.length / 50) + 1) * 50;
+      return app(main, mk('a', {
+        href: "javascript:void(loadDashboard(" + howMany + "));"
+      }, "Show more..."));
+    }
   }
 };
 
