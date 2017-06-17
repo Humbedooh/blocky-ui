@@ -681,7 +681,11 @@ showList = function(list, main) {
             style: {
               paddingRight: "20px"
             }
-          }, ip.reason), new HTML('td', {}, new HTML('a', {
+          }, ip.reason.replace(/(\d+)/, (function(_this) {
+            return function(a) {
+              return parseInt(a).pretty();
+            };
+          })(this))), new HTML('td', {}, new HTML('a', {
             href: "javascript:void(deleteBan('" + ip.ip + "'));"
           }, "Remove ban")), tracker
         ]);
