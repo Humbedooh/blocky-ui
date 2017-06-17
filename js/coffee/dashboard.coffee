@@ -81,7 +81,11 @@ doQQ = () ->
     return false
     
 deleteBan = (ip) ->
-    fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard)
+    if currentTab == 'manual'
+        alert("Ban removed!")
+        manualBan()
+    else
+        fetch("./api/dashboard.lua?delete=" + ip, true, renderDashboard)
 
 trackBan = (ip, rid) ->
     fetch("./api/dashboard.lua?track=" + ip + "&rule=" + rid, null, showTrack)
