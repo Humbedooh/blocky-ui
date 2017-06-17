@@ -144,6 +144,23 @@ function handle(r)
     if post.whitelist then
         local reason = post.whitelist.reason
         local ip = post.whitelist.ip
+        if ip:match("/") then
+            local a,b,c,d = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)")
+            local block = tonumber(ip:match("/(%d+)"))
+            local bignum = bit32.lshift(tonumber(a), 24) + bit32.lshift(tonumber(b), 16) + bit32.lshift(tonumber(c), 8) + tonumber(d)
+            local lowest = bit32.lshift(bit32.rshift(bignum, 32-block), 32-block)
+            local realcidr = ("%d.%d.%d.%d/%d"):format(
+                bit32.rshift(lowest, 24),
+                bit32.rshift(lowest % 2^24, 16),
+                bit32.rshift(lowest % 2^16, 8),
+                lowest % 256,
+                block
+            )
+            if ip ~= realcidr then
+                ip = realcidr
+                corrected = realcidr
+            end            
+        end
         local docid = ip:gsub("/", "_")
         local target = '*'
         local who = r.user or "nobody"
