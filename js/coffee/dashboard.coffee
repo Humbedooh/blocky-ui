@@ -74,7 +74,10 @@ showList = (list, main) ->
                     
             ipname = ip.ip.replace("_", "/")
             if ip.dns and ip.dns != ip.ip
-                ipname += " (" + ip.dns.match(/([^.]+\.[^.]+)$/)[1] + ")"
+                tld = ip.dns.match(/([^.]+\.[^.]+)$/)[1]
+                if tld.match(/^(gov|net|org|com|co)\./)
+                    tld = ip.dns.match(/([^.]+\.[^.]+\.[^.]+)$/)[1]
+                ipname += " (" + tld + ")"
             pt = ""
             tracker = ""
             if ip.ip
