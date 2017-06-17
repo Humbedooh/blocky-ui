@@ -94,7 +94,7 @@ function handle(r)
         local reason = post.ban.reason
         local ip = post.ban.ip
         -- cidr calcs: Find what iptables would expect the real CIDR to be.
-        if ip.match("/") then
+        if ip:match("/") then
             local a,b,c,d = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)")
             local block = tonumber(ip:match("/(%d+)"))
             local bignum = bit32.lshift(tonumber(a), 24) + bit32.lshift(tonumber(b), 16) + bit32.lshift(tonumber(c), 8) + tonumber(d)
