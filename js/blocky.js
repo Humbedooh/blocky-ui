@@ -390,9 +390,11 @@ manualBan = function() {
 };
 
 showManuals = function(json, state) {
-  var ip, ipname, l, len, li, main, pt, ref, renewDate, tracker, ul;
+  var header, ip, ipname, l, len, li, main, pt, ref, renewDate, tracker, ul;
   if (isArray(json.manuals) && json.manuals.length > 0) {
     main = get('mbans');
+    header = new HTML('h3', {}, "Manual bans applied:");
+    app(main, header);
     ul = mk('ul');
     ref = json.manuals;
     for (l = 0, len = ref.length; l < len; l++) {

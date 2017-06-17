@@ -55,6 +55,8 @@ manualBan = () ->
 showManuals = (json, state) ->
     if isArray(json.manuals) and json.manuals.length > 0
         main = get('mbans')
+        header = new HTML('h3', {}, "Manual bans applied:")
+        app(main, header)
         ul = mk('ul')
         for ip in json.manuals
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
