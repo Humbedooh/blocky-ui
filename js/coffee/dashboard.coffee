@@ -66,7 +66,7 @@ showList = (list, main) ->
 #                ipname += " (" + ip.dns + ")"
             pt = ""
             tracker = ""
-            if ip.rid
+            if ip.ip
                 pt = " - "
                 tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
                 tr = new HTML('tr', {style: { fontSize: "0.8rem", color: color}}, [

@@ -639,7 +639,7 @@ showList = function(list, main) {
       ipname = ip.ip.replace("_", "/");
       pt = "";
       tracker = "";
-      if (ip.rid) {
+      if (ip.ip) {
         pt = " - ";
         tracker = mk('a', {
           href: "javascript:void(trackBan('" + ip.ip + "', '" + ip.rid + "'));"
