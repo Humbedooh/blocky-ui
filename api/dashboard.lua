@@ -166,7 +166,8 @@ function handle(r)
     banList = elastic.raw ({
             sort = {
                 {epoch = "desc"}
-            }
+            },
+            size = 5000
         }, 'ban')
     local bl = {}
     local mbans = {}
