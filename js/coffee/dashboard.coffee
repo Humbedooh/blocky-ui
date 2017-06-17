@@ -55,9 +55,9 @@ showList = (list, main) ->
         tbl.inject(tr)
         for ip in list
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
-            ipname = ip.ip.replace("_", "/").replace(/ \(.+/, "")
-            if ip.dns and ip.dns != ip.ip
-                ipname += " (" + ip.dns + ")"
+            ipname = ip.ip.replace("_", "/")
+            #if ip.dns and ip.dns != ip.ip
+#                ipname += " (" + ip.dns + ")"
             pt = ""
             tracker = ""
             if ip.rid

@@ -656,10 +656,7 @@ showList = function(list, main) {
     for (l = 0, len = list.length; l < len; l++) {
       ip = list[l];
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
-      ipname = ip.ip.replace("_", "/").replace(/ \(.+/, "");
-      if (ip.dns && ip.dns !== ip.ip) {
-        ipname += " (" + ip.dns + ")";
-      }
+      ipname = ip.ip.replace("_", "/");
       pt = "";
       tracker = "";
       if (ip.rid) {
