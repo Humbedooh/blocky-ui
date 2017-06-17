@@ -86,7 +86,7 @@ showList = (list, main) ->
                 tr = new HTML('tr', {style: { fontSize: "0.8rem", color: color}}, [
                               new HTML('td', {style: {paddingRight: "20px"}}, new HTML('kbd',{}, ipname)),
                               new HTML('td', {style: {paddingRight: "20px"}}, renewDate),
-                              new HTML('td', {style: {paddingRight: "20px"}}, ip.reason.replace(/(\d{4,99})/, (a) => parseInt(a).pretty())),
+                              new HTML('td', {style: {paddingRight: "20px"}}, ip.reason.replace(/(\d{4,})/g, (a) => parseInt(a).pretty())),
                               new HTML('td', {}, new HTML('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")),
                               tracker
                               ]

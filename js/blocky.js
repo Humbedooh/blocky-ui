@@ -681,7 +681,7 @@ showList = function(list, main) {
             style: {
               paddingRight: "20px"
             }
-          }, ip.reason.replace(/(\d{4,99})/, (function(_this) {
+          }, ip.reason.replace(/(\d{4,})/g, (function(_this) {
             return function(a) {
               return parseInt(a).pretty();
             };
