@@ -673,7 +673,7 @@ showList = function(list, main) {
           href: "javascript:void(deleteBan('" + ip.ip + "'));"
         }, "Remove ban")), tracker);
       }
-      table.inject(tr);
+      tbl.inject(tr);
     }
     app(main, tbl);
     howMany = (parseInt(json.banlist.length / 50) + 1) * 50;

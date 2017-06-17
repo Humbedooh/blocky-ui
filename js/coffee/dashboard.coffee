@@ -62,7 +62,7 @@ showList = (list, main) ->
                               new HTML('td', {}, new HTML('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")),
                               tracker
                               )
-            table.inject(tr)
+            tbl.inject(tr)
         app(main, tbl)
         howMany = (parseInt(json.banlist.length / 50)+1) * 50
         app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
