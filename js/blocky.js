@@ -635,7 +635,12 @@ showList = function(list, main) {
         r = 255 * (1 - since);
         color = "rgba(" + r + ",0,0, 1)";
       }
-      renewDate = Math.round(since) + " days ago";
+      renewDate = Math.round(since);
+      if (renewDate === 1) {
+        renewDate += " day ago";
+      } else {
+        renewDate += " days ago";
+      }
       ipname = ip.ip.replace("_", "/");
       pt = "";
       tracker = "";
