@@ -90,6 +90,7 @@ function handle(r)
         end
     end
     local corrected = nil
+    local failed = false
     if post.ban then
         local reason = post.ban.reason
         local ip = post.ban.ip
@@ -97,6 +98,14 @@ function handle(r)
         if ip:match("/") then
             local a,b,c,d = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)")
             local block = tonumber(ip:match("/(%d+)"))
+            if (a == "140" and b == "211") or block < 16 then
+                failed = "You cannot ban OSU or a CIDR block bigger than /16!!"
+                r:puts(JSON.encode{
+                    okay = false,
+                    reason = failed
+                })
+                return apache2.OK
+            end
             local bignum = bit32.lshift(tonumber(a), 24) + bit32.lshift(tonumber(b), 16) + bit32.lshift(tonumber(c), 8) + tonumber(d)
             local lowest = bit32.lshift(bit32.rshift(bignum, 32-block), 32-block)
             local realcidr = ("%d.%d.%d.%d/%d"):format(
