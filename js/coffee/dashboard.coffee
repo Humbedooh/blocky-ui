@@ -40,9 +40,12 @@ renderDashboard = (json, edit) ->
     h2 = mk('h2', {}, "Currently " + json.banned.pretty() + " IP" + (if json.banned != 1 then 's' else '') + " banned, " + json.whitelisted + " IP" + (if json.whitelisted != 1 then 's' else '') + " whitelisted.")
     app(main, h2)
     
-    if isArray(json.banlist) and json.banlist.length > 0
-        ul = mk('ul')
-        for ip in json.banlist
+    showList(json.banlist, main)
+    
+showList = (list, main) ->
+    if isArray(list) and list.length > 0
+        tbl = new HTML('table')
+        for ip in list
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
             ipname = ip.ip.replace("_", "/")
             if ip.dns and ip.dns != ip.ip
@@ -52,12 +55,17 @@ renderDashboard = (json, edit) ->
             if ip.rid
                 pt = " - "
                 tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
-            li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban"), pt, tracker])
-            app(ul, li)
-        app(main, ul)
-        if json.banlist.length < json.banned
-            howMany = (parseInt(json.banlist.length / 50)+1) * 50
-            app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
+                tr = new HTML('tr', {style: { fontSize: "0.8rem"}},
+                              new HTML('td', {}, new HTML('kbd',{}, ipname)),
+                              new HTML('td', {}, renewDate),
+                              new HTML('td', {}, ip.reason),
+                              new HTML('td', {}, new HTML('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")),
+                              tracker
+                              )
+            table.inject(tr)
+        app(main, tbl)
+        howMany = (parseInt(json.banlist.length / 50)+1) * 50
+        app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))
 
 loadQQ = () ->
     main = get('bread')
