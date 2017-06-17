@@ -173,13 +173,12 @@ function handle(r)
     local mbans = {}
     if banList and banList.hits.hits then
         for k, v in pairs(banList.hits.hits) do
-            if #bl > banSize then
-                break
-            end
             local b = v._source
             b.ip = v._id
             if b.ip ~= get.delete then
-                table.insert(bl, b)
+                if #bl < banSize then
+                    table.insert(bl, b)
+                end
                 if b.manualBan or b.reason:match("^Banned by %S+") then
                     table.insert(mbans, b)
                 end
