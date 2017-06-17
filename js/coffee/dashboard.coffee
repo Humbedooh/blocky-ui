@@ -60,7 +60,7 @@ showList = (list, main) ->
                 r = 255 * (1-since)
                 color = "rgba(#{r},0,0, 1)"
                 
-            renewDate = new Date(ip.epoch * 1000.0).toUTCString()
+            renewDate = Math.round(since) + " days ago"
             ipname = ip.ip.replace("_", "/")
             #if ip.dns and ip.dns != ip.ip
 #                ipname += " (" + ip.dns + ")"
