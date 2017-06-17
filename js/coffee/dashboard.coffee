@@ -79,7 +79,6 @@ showList = (list, main) ->
                 )
             tbl.inject(tr)
         app(main, tbl)
-        console.log(currentTab)
         if currentTab == 'recent'
             howMany = (parseInt(list.length / 50)+1) * 50
             app(main, mk('a', { href:"javascript:void(loadDashboard("+howMany+"));"}, "Show more..."))

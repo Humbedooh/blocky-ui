@@ -670,7 +670,6 @@ showList = function(list, main) {
       tbl.inject(tr);
     }
     app(main, tbl);
-    console.log(currentTab);
     if (currentTab === 'recent') {
       howMany = (parseInt(list.length / 50) + 1) * 50;
       return app(main, mk('a', {
@@ -1272,7 +1271,7 @@ sortTable = function(tbody, col, asc) {
 currentTab = null;
 
 loadTabs = function(stab) {
-  var bread, currentTaB, k, main, tab, tabs, tdiv, title, v;
+  var bread, k, main, tab, tabs, tdiv, title, v;
   tabs = {
     recent: 'Recent activity',
     search: 'Search the archive',
@@ -1302,7 +1301,7 @@ loadTabs = function(stab) {
   for (k in tabs) {
     v = tabs[k];
     if ((stab && stab === k) || (!stab && k === 'recent')) {
-      currentTaB = k;
+      currentTab = k;
       tab = new HTML('div', {
         "class": 'tablink tablink_selected'
       }, v);
