@@ -651,10 +651,12 @@ showList = function(list, main) {
   var howMany, ip, ipname, l, len, pt, renewDate, tbl, tr, tracker;
   if (isArray(list) && list.length > 0) {
     tbl = new HTML('table');
+    tr = new HTML('tr', {}, [new HTML('th', {}, 'IP/Block'), new HTML('th', {}, 'Last renewed'), new HTML('th', {}, 'Reason'), new HTML('th', {}, 'Actions')]);
+    tbl.inject(tr);
     for (l = 0, len = list.length; l < len; l++) {
       ip = list[l];
       renewDate = new Date(ip.epoch * 1000.0).toUTCString();
-      ipname = ip.ip.replace("_", "/");
+      ipname = ip.ip.replace("_", "/").replace(/ \(.+/, "");
       if (ip.dns && ip.dns !== ip.ip) {
         ipname += " (" + ip.dns + ")";
       }

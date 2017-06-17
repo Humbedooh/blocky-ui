@@ -45,9 +45,17 @@ renderDashboard = (json, edit) ->
 showList = (list, main) ->
     if isArray(list) and list.length > 0
         tbl = new HTML('table')
+        tr = new HTML('tr', {}, [
+            new HTML('th', {}, 'IP/Block'),
+            new HTML('th', {}, 'Last renewed'),
+            new HTML('th', {}, 'Reason'),
+            new HTML('th', {}, 'Actions')
+            ]
+        )
+        tbl.inject(tr)
         for ip in list
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
-            ipname = ip.ip.replace("_", "/")
+            ipname = ip.ip.replace("_", "/").replace(/ \(.+/, "")
             if ip.dns and ip.dns != ip.ip
                 ipname += " (" + ip.dns + ")"
             pt = ""
