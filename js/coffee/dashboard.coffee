@@ -73,8 +73,8 @@ showList = (list, main) ->
                     renewDate = "#{hours} hours ago"
                     
             ipname = ip.ip.replace("_", "/")
-            #if ip.dns and ip.dns != ip.ip
-#                ipname += " (" + ip.dns + ")"
+            if ip.dns and ip.dns != ip.ip
+                ipname += " (" + ip.dns.match(/([^.]+\.[^.]+)/)[1] + ")"
             pt = ""
             tracker = ""
             if ip.ip

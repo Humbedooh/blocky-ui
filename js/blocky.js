@@ -649,6 +649,9 @@ showList = function(list, main) {
         }
       }
       ipname = ip.ip.replace("_", "/");
+      if (ip.dns && ip.dns !== ip.ip) {
+        ipname += " (" + ip.dns.match(/([^.]+\.[^.]+)/)[1] + ")";
+      }
       pt = "";
       tracker = "";
       if (ip.ip) {
