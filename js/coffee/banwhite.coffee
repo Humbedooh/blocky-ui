@@ -47,6 +47,31 @@ manualBan = () ->
     app(form, fd)
     app(div, form)
     
+    mdiv = new HTML('div', { id: 'mbans'})
+    app(div, mdiv)
+
+    fetch("./api/dashboard.lua?manual=true", null, showManuals)
+
+showManuals = (json, state) ->
+    if isArray(json.manuals) and json.manuals.length > 0
+        main = get('mbans')
+        ul = mk('ul')
+        for ip in json.manuals
+            renewDate = new Date(ip.epoch * 1000.0).toUTCString()
+            ipname = ip.ip.replace("_", "/")
+            if ip.dns and ip.dns != ip.ip
+                ipname += " (" + ip.dns + ")"
+            pt = ""
+            tracker = ""
+            if ip.rid
+                pt = " - "
+                tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
+            li = mk('li', {style: "font-size: 0.8rem;"}, [mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban"), pt, tracker])
+            app(ul, li)
+        app(main, ul)
+        
+
+    
 submitBan = () ->
     ip = get('ip').value
     if ip.length <= 6

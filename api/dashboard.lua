@@ -120,7 +120,8 @@ function handle(r)
             target = target,
             reason = "Banned by " .. who .. ": " .. reason,
             epoch = os.time(),
-            banTime = os.time()
+            banTime = os.time(),
+            manualBan = true
         }
         local xdoc = elastic.get('ban', docid)
         if xdoc then
@@ -165,16 +166,22 @@ function handle(r)
     banList = elastic.raw ({
             sort = {
                 {epoch = "desc"}
-            },
-            size = banSize
+            }
         }, 'ban')
     local bl = {}
+    local mbans = {}
     if banList and banList.hits.hits then
         for k, v in pairs(banList.hits.hits) do
+            if k > banSize then
+                break
+            end
             local b = v._source
             b.ip = v._id
             if b.ip ~= get.delete then
                 table.insert(bl, b)
+                if b.manualBan then
+                    table.insert(mbans, b)
+                end
             end
         end
     end
@@ -182,6 +189,7 @@ function handle(r)
         okay = true,
         correction = corrected,
         banned = bans,
+        manuals = mbans,
         whitelisted = #whitelist,
         whitelist = whitelist,
         banlist = bl
