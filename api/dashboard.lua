@@ -173,7 +173,7 @@ function handle(r)
     local mbans = {}
     if banList and banList.hits.hits then
         for k, v in pairs(banList.hits.hits) do
-            if k > banSize then
+            if #bl > banSize then
                 break
             end
             local b = v._source
