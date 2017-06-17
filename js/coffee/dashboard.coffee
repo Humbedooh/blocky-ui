@@ -63,8 +63,15 @@ showList = (list, main) ->
             renewDate = Math.round(since)
             if renewDate == 1
                 renewDate += " day ago"
-            else
+            else if renewDate > 1
                 renewDate += " days ago"
+            else
+                hours = Math.round(since*24)
+                if hours == 1
+                    renewDate = "1 hour ago"
+                else
+                    renewDate = "#{hours} hours ago"
+                    
             ipname = ip.ip.replace("_", "/")
             #if ip.dns and ip.dns != ip.ip
 #                ipname += " (" + ip.dns + ")"

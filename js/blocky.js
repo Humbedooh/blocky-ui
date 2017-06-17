@@ -622,7 +622,7 @@ renderDashboard = function(json, edit) {
 };
 
 showList = function(list, main) {
-  var color, howMany, ip, ipname, l, len, pt, r, renewDate, since, tbl, tr, tracker;
+  var color, hours, howMany, ip, ipname, l, len, pt, r, renewDate, since, tbl, tr, tracker;
   if (isArray(list) && list.length > 0) {
     tbl = new HTML('table');
     tr = new HTML('tr', {}, [new HTML('th', {}, 'IP/Block'), new HTML('th', {}, 'Last renewed'), new HTML('th', {}, 'Reason'), new HTML('th', {}, 'Actions')]);
@@ -638,8 +638,15 @@ showList = function(list, main) {
       renewDate = Math.round(since);
       if (renewDate === 1) {
         renewDate += " day ago";
-      } else {
+      } else if (renewDate > 1) {
         renewDate += " days ago";
+      } else {
+        hours = Math.round(since * 24);
+        if (hours === 1) {
+          renewDate = "1 hour ago";
+        } else {
+          renewDate = hours + " hours ago";
+        }
       }
       ipname = ip.ip.replace("_", "/");
       pt = "";
