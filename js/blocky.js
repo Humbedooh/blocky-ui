@@ -390,38 +390,12 @@ manualBan = function() {
 };
 
 showManuals = function(json, state) {
-  var header, ip, ipname, l, len, li, main, pt, ref, renewDate, tracker, ul;
+  var header, main;
   if (isArray(json.manuals) && json.manuals.length > 0) {
     main = get('mbans');
     header = new HTML('h3', {}, "Manual bans applied:");
     app(main, header);
-    ul = mk('ul');
-    ref = json.manuals;
-    for (l = 0, len = ref.length; l < len; l++) {
-      ip = ref[l];
-      renewDate = new Date(ip.epoch * 1000.0).toUTCString();
-      ipname = ip.ip.replace("_", "/");
-      if (ip.dns && ip.dns !== ip.ip) {
-        ipname += " (" + ip.dns + ")";
-      }
-      pt = "";
-      tracker = "";
-      if (ip.rid) {
-        pt = " - ";
-        tracker = mk('a', {
-          href: "javascript:void(trackBan('" + ip.ip + "', '" + ip.rid + "'));"
-        }, "Track");
-      }
-      li = mk('li', {
-        style: "font-size: 0.8rem;"
-      }, [
-        mk('kbd', {}, ipname), ": " + ip.reason + " - Ban last renewed renewed " + renewDate + " - ", mk('a', {
-          href: "javascript:void(deleteBan('" + ip.ip + "'));"
-        }, "Remove ban"), pt, tracker
-      ]);
-      app(ul, li);
-    }
-    return app(main, ul);
+    return showList(json.manuals, main);
   }
 };
 
@@ -696,7 +670,7 @@ showList = function(list, main) {
       tbl.inject(tr);
     }
     app(main, tbl);
-    howMany = (parseInt(json.banlist.length / 50) + 1) * 50;
+    howMany = (parseInt(list.length / 50) + 1) * 50;
     return app(main, mk('a', {
       href: "javascript:void(loadDashboard(" + howMany + "));"
     }, "Show more..."));
