@@ -66,8 +66,11 @@ submitBan = () ->
             reason: reason,
             target: target
         }
-    }, null, () ->
-        alert("Ban added!")
+    }, null, (json, state) ->
+        if json.correction
+            alert("Ban applied, CIDR corrected to: #{json.correction}!")
+        else
+            alert("Ban applied!")
         manualBan()
         )
     

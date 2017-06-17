@@ -407,8 +407,12 @@ submitBan = function() {
       reason: reason,
       target: target
     }
-  }, null, function() {
-    alert("Ban added!");
+  }, null, function(json, state) {
+    if (json.correction) {
+      alert("Ban applied, CIDR corrected to: " + json.correction + "!");
+    } else {
+      alert("Ban applied!");
+    }
     return manualBan();
   });
 };

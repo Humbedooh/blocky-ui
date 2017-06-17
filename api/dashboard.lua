@@ -89,10 +89,28 @@ function handle(r)
             elastic.delete('whitelist', docid)
         end
     end
-    
+    local corrected = nil
     if post.ban then
         local reason = post.ban.reason
         local ip = post.ban.ip
+        -- cidr calcs: Find what iptables would expect the real CIDR to be.
+        if ip.match("/") then
+            local a,b,c,d = ip:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)")
+            local block = tonumber(ip:match("/(%d+)"))
+            local bignum = bit32.lshift(tonumber(a), 24) + bit32.lshift(tonumber(b), 16) + bit32.lshift(tonumber(c), 8) + tonumber(d)
+            local lowest = bit32.lshift(bit32.rshift(bignum, 32-block), 32-block)
+            local realcidr = ("%d.%d.%d.%d/%d"):format(
+                bit32.rshift(lowest, 24),
+                bit32.rshift(lowest % 2^24, 16),
+                bit32.rshift(lowest % 2^16, 8),
+                lowest % 256,
+                block
+            )
+            if ip ~= realcidr then
+                ip = realcidr
+                corrected = realcidr
+            end            
+        end
         local docid = ip:gsub("/", "_")
         local target = post.ban.target or '*'
         local who = r.user or "nobody"
@@ -162,6 +180,7 @@ function handle(r)
     end
     r:puts(JSON.encode{
         okay = true,
+        correction = corrected,
         banned = bans,
         whitelisted = #whitelist,
         whitelist = whitelist,
