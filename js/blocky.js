@@ -655,7 +655,7 @@ showList = function(list, main) {
     tbl.inject(tr);
     for (l = 0, len = list.length; l < len; l++) {
       ip = list[l];
-      since = ((new Date().now() / 1000) - ip.epoch) / 86400;
+      since = ((Date.now() / 1000) - ip.epoch) / 86400;
       color = "#000";
       if (since < 1) {
         g = 255 * since;
