@@ -11,7 +11,7 @@ loadTabs = (stab) ->
         whitelist: 'Whitelist'
     }
     
-    main = new HTML('div', { style: { position: 'relative', display: 'inline-block', background: "#eee", width: '90%', maxWidth: '1600px', minWidth: '1200px', height: '700px', borderRadius: '3px'}})
+    main = new HTML('div', { id: 'dialog'})
     document.getElementById('wrapper').innerHTML = ""
     document.getElementById('wrapper').appendChild(main)
     
