@@ -54,6 +54,12 @@ showList = (list, main) ->
         )
         tbl.inject(tr)
         for ip in list
+            since = ((new Date().now()/1000) - ip.epoch) / 86400
+            color = "#000"
+            if since < 1
+                g = 255 * since
+                color = "rgba(0,0,#{g}, 1)"
+                
             renewDate = new Date(ip.epoch * 1000.0).toUTCString()
             ipname = ip.ip.replace("_", "/")
             #if ip.dns and ip.dns != ip.ip
@@ -63,7 +69,7 @@ showList = (list, main) ->
             if ip.rid
                 pt = " - "
                 tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
-                tr = new HTML('tr', {style: { fontSize: "0.8rem"}}, [
+                tr = new HTML('tr', {style: { fontSize: "0.8rem", color: color}}, [
                               new HTML('td', {style: {paddingRight: "20px"}}, new HTML('kbd',{}, ipname)),
                               new HTML('td', {style: {paddingRight: "20px"}}, renewDate),
                               new HTML('td', {style: {paddingRight: "20px"}}, ip.reason),
