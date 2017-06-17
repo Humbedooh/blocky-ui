@@ -49,7 +49,7 @@ function handle(r)
         end
     end
     for k, v in pairs(bl) do
-        if v.epoch > (os.time() - (86400*7)) then
+        if v.epoch > (os.time() - (86400*2)) then
             table.insert(list, { ip = v.ip, reason = v.reason, target = "*" })
         end
     end
