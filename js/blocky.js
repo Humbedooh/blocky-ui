@@ -670,6 +670,7 @@ showList = function(list, main) {
       tbl.inject(tr);
     }
     app(main, tbl);
+    console.log(currentTab);
     if (currentTab === 'recent') {
       howMany = (parseInt(list.length / 50) + 1) * 50;
       return app(main, mk('a', {
