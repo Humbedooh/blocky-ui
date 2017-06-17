@@ -1303,7 +1303,7 @@ loadTabs = function(stab) {
   for (k in tabs) {
     v = tabs[k];
     if ((stab && stab === k) || (!stab && k === 'recent')) {
-      currentTaB = K;
+      currentTaB = k;
       tab = new HTML('div', {
         "class": 'tablink tablink_selected'
       }, v);

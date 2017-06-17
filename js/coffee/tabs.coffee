@@ -19,7 +19,7 @@ loadTabs = (stab) ->
     main.inject(tdiv)
     for k,v of tabs
         if (stab and stab == k) or (not stab and k == 'recent')
-            currentTaB = K
+            currentTaB = k
             tab = new HTML('div', {class: 'tablink tablink_selected'}, v)
             title = new HTML('h2', {}, v+":")
             main.inject(title)
