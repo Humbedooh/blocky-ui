@@ -64,9 +64,9 @@ showList = (list, main) ->
                 pt = " - "
                 tracker = mk('a', { href: "javascript:void(trackBan('" + ip.ip+"', '" + ip.rid + "'));"}, "Track")
                 tr = new HTML('tr', {style: { fontSize: "0.8rem"}}, [
-                              new HTML('td', {}, new HTML('kbd',{}, ipname)),
-                              new HTML('td', {}, renewDate),
-                              new HTML('td', {}, ip.reason),
+                              new HTML('td', {style: {paddingRight: "20px"}}, new HTML('kbd',{}, ipname)),
+                              new HTML('td', {style: {paddingRight: "20px"}}, renewDate),
+                              new HTML('td', {style: {paddingRight: "20px"}}, ip.reason),
                               new HTML('td', {}, new HTML('a', { href: "javascript:void(deleteBan('" + ip.ip+"'));"}, "Remove ban")),
                               tracker
                               ]
