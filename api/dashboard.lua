@@ -2,7 +2,11 @@
 local elastic = require 'elastic'
 local JSON = require 'cjson'
 local input = require 'parse'
-
+local bit32 = bit32
+-- check if we need to require or if built-in
+if not bit32 then
+    bit32 = require 'bit32'
+end
 function handle(r)
     r.content_type = "application/json"
     local get = r:parseargs()
