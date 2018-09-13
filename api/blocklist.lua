@@ -49,7 +49,7 @@ function handle(r)
         end
     end
     for k, v in pairs(bl) do
-        if v.epoch > (os.time() - (86400*2)) then
+        if v.epoch > (os.time() - (86400*2)) or v.reason:match("^Banned by") then -- new or manual bans only
             table.insert(list, { ip = v.ip, reason = v.reason, target = "*" })
         end
     end
